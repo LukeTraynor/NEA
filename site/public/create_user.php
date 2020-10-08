@@ -1,4 +1,5 @@
-echo "Connected successfully";
+<?php
+include("../includes/databaseconnection.php");
 $sql = "INSERT INTO `users` (`UserID`, `Username`, `Password`, `Timestamp`) VALUES (NULL, 'Luke', 'asdf', CURRENT_TIMESTAMP)";
 
 if ($conn->query($sql) === TRUE) {
@@ -8,3 +9,4 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
+?>

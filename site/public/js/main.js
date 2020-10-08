@@ -8,4 +8,15 @@ document.querySelector('form.form-signin').addEventListener('submit', function (
 
     console.log(emailInput.value);
     console.log(passwordInput.value);
+    $.ajax({ 
+        type: "POST",
+        url: "create_user.php",
+        success: function () {
+            console.log("it worked");
+        },
+        error: function () {
+            console.log("it did not work");
+        },
+    });
 });
+
