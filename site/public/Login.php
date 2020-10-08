@@ -1,4 +1,8 @@
+﻿<?php
+include("../includes/databaseconnection.php")
 
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -38,3 +42,4 @@
       <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>
+
