@@ -8,9 +8,11 @@ document.querySelector('form.form-signin').addEventListener('submit', function (
 
     console.log(emailInput.value);
     console.log(passwordInput.value);
-    $.ajax({ 
+    $.ajax({
         type: "POST",
-        url: "create_user.php",
+        url: "./api/create_user.php",
+        data: { 'emailInput': emailInput.value, 'passwordInput': passwordInput.value },
+        //dataType: 'json', this breaks everything look into why
         success: function () {
             console.log("it worked");
         },
