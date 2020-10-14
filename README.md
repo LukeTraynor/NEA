@@ -29,3 +29,8 @@ This repo contains all the code for Group Calendar
 ### DELETING AN ITEM FROM THE USER TABLE EXAMPLE
 
 ```DELETE FROM `users` WHERE `users`.`UserID` = 2```
+
+
+## Ideas
+
+

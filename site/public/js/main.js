@@ -1,8 +1,6 @@
+document.querySelector('form.form-signin').addEventListener('submit', function (e) {
 var emailInput = document.getElementById('inputEmail');
 var passwordInput = document.getElementById('inputPassword');
-
-document.querySelector('form.form-signin').addEventListener('submit', function (e) {
-
     //prevent the normal submission of the form
     e.preventDefault();
 
@@ -21,4 +19,5 @@ document.querySelector('form.form-signin').addEventListener('submit', function (
         },
     });
 });
+
 
