@@ -30,7 +30,29 @@ This repo contains all the code for Group Calendar
 
 ```DELETE FROM `users` WHERE `users`.`UserID` = 2```
 
+## Creating local docker mySQL database
 
-## Ideas
+### Create mySQL Docker DB
+docker run --name test-mysql -p 3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
+
+### Check which port mySQL Docker DB is running on
+docker ps
+
+### Log into mySQL Docker DB
+mysql -P 32768 --protocol=tcp -u root -p
+
+## mySQL cli commands
+use group_calendar;  sets the database 
+show tables;  displays all tables in the chosen database
+
+## ideas
+create map for events location - google api etc
+using google api to dynamically populate addresses
+
+## To Do
+* Create SQL for all tables
+* Draw all wireframes for all pages
+* Create all HTML pages
+* add more things to do
 
 

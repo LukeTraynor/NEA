@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Profile</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Custom styles for this template -->
+    <link href="css/Profile.css" rel="stylesheet">
+    <script type="text/javascript" src="js/profile.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Logo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">MyProfile <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">MyCalendar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Groups</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Events</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<main role="main" class="container">
+
+<div class="my-3 p-3 bg-white rounded box-shadow">
+    <h6 class="border-bottom border-gray pb-2 mb-0">MyProfile</h6>
+    <div class="container" id="profile_details">
+        <div class="row">
+            <div class="col-4 text-center align-items-center" id="profile_image">
+                <div class="pt-4">
+                    <div class="">
+                        <img class="rounded-circle" src="./img/download.png" alt="Generic placeholder image" width="140" height="140">
+                    </div>
+                    <div>
+                        <button type="button" id="upload_pic" class="btn btn-dark" >Upload</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-8" id="profile_name">
+                <form>
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="email" class="form-control" id="first_name" aria-describedby="emailHelp" placeholder="Enter First Name" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="second_name">Second Name</label>
+                        <input type="email" class="form-control" id="second_name" aria-describedby="emailHelp" placeholder="Enter Second Name" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email" disabled>
+                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                    <textarea class="form-control" id="bio" rows="3" disabled></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="edit_page" class="text-right">
+            <button type="button" id="edit_button" class="btn btn-dark">Edit</button>
+                </div>
+            
+                
+                    <div id="save_close_button" class="text-right">
+                        <button type="button" id="save_button" class="btn btn-dark">Save</button>
+                        <button type="button" id="close_button" class="btn btn-dark">Close</button>
+                    </div>
+            </div>
+
+
+</div>
+
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">MyGroups</h6>
+            
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                
+                <div class="row">
+
+                    <div class="col col-lg-2" id="profile_image">
+                        <div class="pt-4">
+                            <div class="">
+                                <img class="rounded-circle" src="./img/download.png" alt="Generic placeholder image" width="140" height="140">
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="col" id="group_bio">
+                        <form>
+                            <h5 class="text-center">Group Name</h5>
+                            <p class="mb-1">Lorem Ipsum is simply dummy text of the printing and 
+                                typesetting industry. Lorem Ipsum has been the industry's 
+                                standard dummy text ever since the 1500s, when an unknown 
+                                printer took a galley of type and scrambled it to make a 
+                                type specimen book. It has survived not only five centuries, 
+                                but also the leap into electronic typesetting, 
+                                remaining essentially unchanged.</p>    
+                    </div>
+
+                    <div class="col-md-auto">
+                        <button type="button" id="leave_button" class="btn btn-dark">-</button>
+                    </div>
+                </div>
+
+                    </a>
+
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="row">
+                            <div class="col col-lg-2" id="profile_image">
+                                <div class="pt-4">
+                                    <div class="">
+                                        <img class="rounded-circle" src="./img/download.png" alt="Generic placeholder image" width="140" height="140">
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col" id="group_bio">
+                                <form>
+                                    <h5 class="text-center">Group Name</h5>
+                                    <p class="mb-1">Lorem Ipsum is simply dummy text of the printing and 
+                                        typesetting industry. Lorem Ipsum has been the industry's 
+                                        standard dummy text ever since the 1500s, when an unknown 
+                                        printer took a galley of type and scrambled it to make a 
+                                        type specimen book. It has survived not only five centuries, 
+                                        but also the leap into electronic typesetting, 
+                                        remaining essentially unchanged. </p>    
+                            </div>
+        
+                            <div class="col-md-auto">
+                                <button type="button" id="leave_button" class="btn btn-dark">-</button>
+                            </div>
+                        </div>
+                </a>
+                
+            </div>
+
+    </div>
+</main>
+</body>
+</html>
