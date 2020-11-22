@@ -12,22 +12,19 @@ DROP DATABASE group_calendar
 CREATE DATABASE `group_calendar`
 
 
-CREATE TABLE Users (
-    Username varchar(255)
-);
-
-
 CREATE TABLE group_calendar.Users (
-    UserID int NOT NULL PRIMARY KEY,
-    Username varchar(255),
-    Password varchar(255),
-    email varchar(255),
-    FirstName varchar(255),
-    LastName varchar(255),
-    ImgLoc varchar(255),
-    Bio varchar(255),
-    created_at TimeStamp DEFAULT CURRENT_TIMESTAMP
-);
+UserID INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Username VARCHAR(50),
+User_Password VARCHAR(50),
+FirstName VARCHAR(30) NOT NULL,
+LastName VARCHAR(30) NOT NULL,
+Email VARCHAR(50),
+Bio VARCHAR(50),
+ImgLoc VARCHAR(50),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
+
 
 CREATE TABLE Groups (
     GroupID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
