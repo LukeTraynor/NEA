@@ -5,7 +5,7 @@
 <?php
 include("../includes/databaseconnection.php");
 $userID = "52";
-$sql = "SELECT * FROM `users` WHERE `UserID`='$userID'";
+$sql = "SELECT * FROM `Users` WHERE `UserID`='$userID'";
 $result = $conn->query($sql);
 $username = "";
 if ($result->num_rows > 0) {
