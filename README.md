@@ -49,6 +49,9 @@ show tables;  displays all tables in the chosen database
 create map for events location - google api etc
 using google api to dynamically populate addresses
 
+## Things to fix
+* the popup for the groups page on the + button
+
 ## To Do
 * Create SQL for all tables
 * Draw all wireframes for all pages
