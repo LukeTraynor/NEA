@@ -17,6 +17,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Custom styles for this template -->
     <link href="css/Event.css" rel="stylesheet">
+    <script type="text/javascript" src="js/event.js"></script>
 </head>
 
 <body>
@@ -45,3 +46,39 @@
     </ul>
     </div>
 </nav>
+<main role="main" class="container">
+
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Event</h6>
+        <div class="container" id="Events">
+            <div class="row">
+                <div class="col-4">
+                        <label for="event_name">Event Name</label>
+                        <input type="email" class="form-control" id="Event_name" placeholder="Enter Event Name" disabled>
+                </div>
+                <div class="col-4">
+                    <label for="date_of_event">Date Of Event</label>
+                    <input type="email" class="form-control" id="date_of_event" placeholder="Enter Date of Event" disabled>
+                </div>
+                <div class="col-4">
+                    <label for="bio">Bio</label>
+                    <textarea class="form-control" id="bio" rows="3" disabled></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row">
+                    <div class="col">
+                        <div id="edit_page" class="text-right">
+                    <button type="button" id="edit_button" class="btn btn-dark">Edit</button>
+                        </div>
+                    
+                        
+                            <div id="save_close_button" class="text-right">
+                                <button type="button" id="save_button" class="btn btn-dark">Save</button>
+                                <button type="button" id="close_button" class="btn btn-dark">Close</button>
+                            </div>
+                        </div> 
+            </div>
+        </div>
+    </div>
+</main
