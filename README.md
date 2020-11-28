@@ -53,9 +53,14 @@ using google api to dynamically populate addresses
 * the popup for the groups page on the + button
 
 ## To Do
-* Create SQL for all tables
+* Create SQL for all tables - complete
 * Draw all wireframes for all pages
-* Create all HTML pages
+* Create all HTML pages - wip
 * add more things to do
 
+## today
+* create user manually
+* sql to get user information
+* api to get user information
+* ajax call to interact with api
 
