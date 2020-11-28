@@ -56,11 +56,32 @@ using google api to dynamically populate addresses
 * Create SQL for all tables - complete
 * Draw all wireframes for all pages
 * Create all HTML pages - wip
-* add more things to do
+* Implement AJAX calls into all html pages
+* connect all html pages
+* calendar
+* api for other methods and other resources     /users     /events
+* login/register page connection
 
 ## today
 * create user manually
 * sql to get user information
 * api to get user information
 * ajax call to interact with api
+
+* write out 4 methods and paths
+* 
+
+## methods
+
+GET Users/:UserID
+select * where UserID = UserID
+
+DELETE Users
+request body = UserID : "UserID"     accepted in json
+
+PUT Users
+request body = pass through all parameters
+
+POST Users
+request body = pass through all parameters
 

@@ -16,6 +16,22 @@
     $("#save_button").click(function(){
         console.log("this will save information");
     });
+var userid = 1;
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/users/"+userid,
+        dataType: 'json', 
+        crossDomain : true,
+        success: function (res) {
+            console.log("it worked");
+            console.log(res.FirstName);
+            document.getElementById('first_name').value = res.FirstName;
+        },
+        error: function (res, err) {
+            console.log("it did not work");
+        },
+    });
+
 });
 
  $(document).ready(function(){
