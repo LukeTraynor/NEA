@@ -64,3 +64,20 @@ using google api to dynamically populate addresses
 * api to get user information
 * ajax call to interact with api
 
+* write out 4 methods and paths
+* 
+
+## methods
+
+GET Users/:UserID
+select * where UserID = UserID
+
+DELETE Users
+request body = UserID : "UserID"     accepted in json
+
+PUT Users
+request body = pass through all parameters
+
+POST Users
+request body = pass through all parameters
+

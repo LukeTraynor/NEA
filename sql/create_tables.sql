@@ -9,7 +9,7 @@ DROP DATABASE group_calendar
 
 
 
-CREATE DATABASE `group_calendar`
+CREATE DATABASE `group_calendar`;
 
 
 CREATE TABLE group_calendar.Users (
@@ -22,7 +22,7 @@ Email VARCHAR(50),
 Bio VARCHAR(50),
 ImgLoc VARCHAR(50),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 CREATE TABLE group_calendar.Groups (
 GroupID INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -30,7 +30,7 @@ GroupName VARCHAR(50) NOT NULL,
 Bio VARCHAR(50),
 ImgLoc VARCHAR(50),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 CREATE TABLE group_calendar.Events (
 EventID INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -40,18 +40,31 @@ DateOfEvent DATE,
 LocationOfEvent VARCHAR(30),
 Bio VARCHAR(50),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 CREATE TABLE group_calendar.GroupMembers (
 UserID INT(6) NOT NULL ,
 GroupID INT(6) NOT NULL,
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (UserID, GroupID)
-)
+);
 
 CREATE TABLE group_calendar.EventGroups (
 EventID INT(6) NOT NULL,
 GroupID INT(6) NOT NULL,
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (EventID, GroupID)
-)
+);
+
+-- create user
+
+INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `created_at`) VALUES ('Luke', 'pass', 'luke', 'traynor', 'luke@gmail.com', 'words words words', CURRENT_TIMESTAMP);
+
+-- getting user
+
+select *
+from Users
+where UserID = 1;
+
+-- put this in to before connecting to database with node js
+ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'my-secret-pw'
