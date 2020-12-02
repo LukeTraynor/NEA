@@ -28,17 +28,7 @@ app.get('/Users/:UserID', function(request, response, next) {
 });
 
 
-
-
-
-//app.get('/Users/:UserID',function (req, res) {
- // req.params; //{ UserID: '42' };
-  //res.json(req.params);
-
-  
-  //res.send("worked")
-//})
-
+//ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'my-secret-pw';
 
 
 //DEBUG=myapp:* npm start
