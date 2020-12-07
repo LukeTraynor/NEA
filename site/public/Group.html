@@ -31,107 +31,106 @@
     <div class="collapse navbar-collapse" id="navbarsExample01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">MyProfile <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="profile.html">MyProfile <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">MyCalendar</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Groups</a>
+                <a class="nav-link" href="Groups.html">Groups</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Events</a>
-    </div>
-    </li>
+                <a class="nav-link" href="Events.html">Events</a>
+                </div>
+            </li>
     </ul>
     </div>
 </nav>
-
-<div class="my-3 p-3 bg-white rounded box-shadow">
-    <h6 class="border-bottom border-gray pb-2 mb-0">MyProfile</h6>
-    <div class="container" id="profile_details">
-        <div class="row">
-            <div class="col-4 text-center align-items-center" id="profile_image">
-                <div class="pt-4">
-                    <div class="">
-                        <img class="rounded-circle" src="./img/download.png" alt="Generic placeholder image" width="140" height="140">
-                    </div>
-                    <div>
-                        <button type="button" id="upload_pic" class="btn btn-dark" >Upload</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-8" id="profile_name">
-                <form>
-                    <div class="form-group">
-                        <label for="group_name">Group Name</label>
-                        <input type="email" class="form-control" id="group_name" aria-describedby="emailHelp" placeholder="Enter First Name" disabled>
-                    </div>
-                   <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Bio</label>
-                    <textarea class="form-control" id="bio" rows="3" disabled></textarea>
-                </div> 
-            </div>
-        </div>
-        <div class="row">
-        </div>
-        <div class="row">
-            <div class="col">
-                <div id="edit_page" class="text-right">
-            <button type="button" id="edit_button" class="btn btn-dark">Edit</button>
-                </div>
-            
-                
-                    <div id="save_close_button" class="text-right">
-                        <button type="button" id="save_button" class="btn btn-dark">Save</button>
-                        <button type="button" id="close_button" class="btn btn-dark">Close</button>
-                    </div>
-            </div>
-        </div>
-
-            <div class="my-3 p-3 bg-white rounded box-shadow">
-                <h6 class="border-bottom border-gray pb-2 mb-0">Users In Group</h6>
-                    
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        
-                        <div class="row">
-        
-                            <div class="col col-lg-2" id="profile_image">
-                                <div class="pt-4">
-                                    <div class="">
-                                        <img class="rounded-circle" src="./img/download.png" alt="Generic placeholder image" width="140" height="140">
-                                    </div>
-                                </div>
-                            </div>
-                
-                            <div class="col" id="group_bio">
-                                <form>
-                                    <h1 class="text-center">User Name</h1>
-                                    
-                            </div>
+<main role="main" class="container"></main>
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">MyEvent</h6>
+        <div class="container" id="profile_details">
+            <div class="row">
+                <div class="col-4 text-center align-items-center" id="profile_image">
+                    <div class="pt-4">
+                        <div class="">
+                            <img class="rounded-circle" src="./img/download.png" alt="Generic placeholder image" width="140" height="140">
                         </div>
-        
-                            </a>
-        
+                        <div>
+                            <button type="button" id="upload_pic" class="btn btn-dark" >Upload</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-8" id="profile_name">
+                    <form>
+                        <div class="form-group">
+                            <label for="group_name">Group Name</label>
+                            <input type="email" class="form-control" id="group_name" aria-describedby="emailHelp" placeholder="Enter First Name" disabled>
+                        </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Bio</label>
+                        <textarea class="form-control" id="bio" rows="3" disabled></textarea>
+                    </div> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="edit_page" class="text-right">
+                        <button type="button" id="edit_button" class="btn btn-dark">Edit</button>
+                    </div>
+                        <div id="save_close_button" class="text-right">
+                            <button type="button" id="save_button" class="btn btn-dark">Save</button>
+                            <button type="button" id="close_button" class="btn btn-dark">Close</button>
+                        </div>
+                </div>
+            </div>
+
+                <div class="my-3 p-3 bg-white rounded box-shadow">
+                    <h6 class="border-bottom border-gray pb-2 mb-0">Users In Group</h6>
+                        
+                        <div class="list-group">
                             <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="row">
-                                    <div class="col col-lg-2" id="profile_image">
-                                        <div class="pt-4">
-                                            <div class="">
-                                                <img class="rounded-circle" src="./img/download.png" alt="Generic placeholder image" width="140" height="140">
-                                            </div>
+                            
+                            <div class="row">
+            
+                                <div class="col col-lg-2" id="profile_image">
+                                    <div class="pt-4">
+                                        <div class="">
+                                            <img class="rounded-circle" src="./img/download.png" alt="Generic placeholder image" width="140" height="140">
                                         </div>
                                     </div>
-                        
-                                    <div class="col" id="group_bio">
-                                        <form>
-                                            <h1 class="text-center">User Name</h1>
-                                    </div>
-                
                                 </div>
-                        </a>
-                        
-                    </div>
-            </div>
+                    
+                                <div class="col" id="group_bio">
+                                    <form>
+                                        <h1 class="text-center">User Name</h1>
+                                        
+                                </div>
+                            </div>
+            
+                                </a>
+            
+                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="row">
+                                        <div class="col col-lg-2" id="profile_image">
+                                            <div class="pt-4">
+                                                <div class="">
+                                                    <img class="rounded-circle" src="./img/download.png" alt="Generic placeholder image" width="140" height="140">
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <div class="col" id="group_bio">
+                                            <form>
+                                                <h1 class="text-center">User Name</h1>
+                                        </div>
+                    
+                                    </div>
+                                </a>
+                            
+                        </div>
+                </div>
+        </div>
+    </div>
+</main>
