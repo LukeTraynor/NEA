@@ -26,6 +26,9 @@ var userid = 1;
             console.log("it worked");
             console.log(res.FirstName);
             document.getElementById('first_name').value = res.FirstName;
+            document.getElementById('last_name').value = res.LastName;
+            document.getElementById('email').value = res.Email;
+            document.getElementById('bio').value = res.Bio;
         },
         error: function (res, err) {
             console.log("it did not work");

@@ -66,5 +66,15 @@ select *
 from Users
 where UserID = 1;
 
--- put this in to before connecting to database with node js
+-- create event
+
+INSERT INTO `Events` (`EventName`, `TimeOfEvent`, `DateOfEvent`, `LocationOfEvent`, `bio`, `created_at`) VALUES ('Meeting', '20200404', '20200303', 'Woodhouse College', 'lots and lots of words about event', CURRENT_TIMESTAMP);
+
+-- getting event
+
+select *
+from Events
+where EventID = 1;
+
+-- put this in to terminal before connecting to database with node js
 ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'my-secret-pw'

@@ -27,6 +27,13 @@ app.get('/Users/:UserID', function(request, response, next) {
     });
 });
 
+app.get('/Events/:EventID', function(request, response, next) {
+  con.query('SELECT * FROM Events WHERE EventID = ' + request.params.EventID, function(err, result, fields) 
+  {
+    if (err) throw err;
+    return response.send(result[0]);
+  });
+});
 
 //ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'my-secret-pw';
 
