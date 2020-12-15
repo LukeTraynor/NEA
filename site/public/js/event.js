@@ -16,7 +16,7 @@ $(document).ready(function() {
         crossDomain : true,
         success: function (res) {
             console.log("it worked");
-            console.log(res.FirstName);
+            console.log(res.EventName);
             document.getElementById('Event_name').value = res.EventName;
             //fix date of event sql table datafield
             document.getElementById('bio').value = res.Bio;

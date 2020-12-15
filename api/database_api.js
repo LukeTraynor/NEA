@@ -35,6 +35,14 @@ app.get('/Events/:EventID', function(request, response, next) {
   });
 });
 
+app.get('/Groups/:GroupID', function(request, response, next) {
+  con.query('SELECT * FROM Groups WHERE GroupID = ' + request.params.GroupID, function(err, result, fields) 
+  {
+    if (err) throw err;
+    return response.send(result[0]);
+  });
+});
+
 //ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'my-secret-pw';
 
 

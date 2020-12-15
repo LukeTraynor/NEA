@@ -76,5 +76,16 @@ select *
 from Events
 where EventID = 1;
 
+-- create group
+
+INSERT INTO `Groups` (`GroupName`, `bio`, `ImgLoc`, `created_at`) VALUES ('Tesco', 'loads of loads of words for bio', 'location', CURRENT_TIMESTAMP);
+
+-- getting event
+
+select *
+from Groups
+where GroupID = 1;
+
+
 -- put this in to terminal before connecting to database with node js
 ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'my-secret-pw'

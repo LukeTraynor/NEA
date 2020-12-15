@@ -16,6 +16,23 @@
     });
 });
 
+var groupid = 1;
+$.ajax({
+    type: "GET",
+    url: "http://localhost:3000/Groups/"+groupid,
+    dataType: 'json', 
+    crossDomain : true,
+    success: function (res) {
+        console.log("it worked");
+        console.log(res.EventName);
+        document.getElementById('group_name').value = res.GroupName;
+        document.getElementById('bio').value = res.Bio;
+    },
+    error: function (res, err) {
+        console.log("it did not work");
+    },
+});
+
  $(document).ready(function(){
     $("#edit_button").click(function(){
         console.log("hide");
