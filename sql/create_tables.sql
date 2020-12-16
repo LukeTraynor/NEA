@@ -66,5 +66,34 @@ select *
 from Users
 where UserID = 1;
 
--- put this in to before connecting to database with node js
+select Groups.GroupName, Groups.GroupID, Groups.Bio, Groups.ImgLoc from Users, `Groups` where Users.UserID = 1;
+
+-- create event
+
+INSERT INTO `Events` (`EventName`, `TimeOfEvent`, `DateOfEvent`, `LocationOfEvent`, `bio`, `created_at`) VALUES ('Meeting', '20200404', '20200303', 'Woodhouse College', 'lots and lots of words about event', CURRENT_TIMESTAMP);
+
+-- getting event
+
+select *
+from Events
+where EventID = 1;
+
+-- create group
+
+INSERT INTO `Groups` (`GroupName`, `bio`, `ImgLoc`, `created_at`) VALUES ('Tesco2', 'loads of loads of words for bio', 'location', CURRENT_TIMESTAMP);
+
+INSERT INTO `GroupMembers` (`UserID`, `GroupID`) VALUES (1, 1);
+
+
+-- getting Groups
+
+SELECT * FROM `Groups`;
+
+SELECT * FROM `Groups` where GroupID = 1;
+
+-- updating a user, example
+
+UPDATE Users SET FirstName = 'newfirst1', LastName = 'newlast', Email = 'newemail', Bio = 'newbio' WHERE UserID = 1;
+
+-- put this in to terminal before connecting to database with node js
 ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'my-secret-pw'
