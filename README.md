@@ -57,10 +57,16 @@ using google api to dynamically populate addresses
 * Draw all wireframes for all pages
 * Create all HTML pages - wip
 * Implement AJAX calls into all html pages
-* connect all html pages
+* connect all html pages - mostly done
 * calendar
 * api for other methods and other resources     /users     /events
 * login/register page connection
+
+Group A B C
+help with other api methods
+what to do with the calendar html page
+
+
 
 ## today
 * create user manually
