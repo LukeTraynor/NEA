@@ -67,6 +67,8 @@ from Users
 where UserID = 1;
 
 select Groups.GroupName, Groups.GroupID, Groups.Bio, Groups.ImgLoc from Users, `Groups` where Users.UserID = 1;
+select * from Users, `Groups` where Users.UserID = 1;
+
 
 -- create event
 

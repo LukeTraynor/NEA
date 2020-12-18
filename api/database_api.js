@@ -31,6 +31,7 @@ app.get('/Users/:UserID', function(request, response, next) {
     });
 });
 
+//UPDATING USER INFORMATION
 app.put('/Users/:UserID', function(request, response) {
 
   //var profileBody = request.body;
@@ -50,7 +51,7 @@ var FirstName = request.body.FirstName;
 
 //GET all groups a users is in
 app.get('/Users/Groups/:UserID', function(request, response, next) {
-  con.query('select Groups.GroupName, Groups.GroupID, Groups.Bio, Groups.ImgLoc from Users, `Groups` where UserID = ' + request.params.UserID, function(err, result, fields) 
+  con.query('SELECT Groups.GroupName, Groups.GroupID, Groups.Bio, Groups.ImgLoc FROM `Users`, `Groups` WHERE UserID = ' + request.params.UserID, function(err, result, fields) 
   {
     if (err) throw err;
     return response.send(result[0]);

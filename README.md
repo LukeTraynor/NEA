@@ -61,6 +61,7 @@ using google api to dynamically populate addresses
 * calendar
 * api for other methods and other resources     /users     /events
 * login/register page connection
+* cookie sessions to hold the user id
 
 Group A B C
 help with other api methods
