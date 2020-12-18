@@ -11,7 +11,7 @@
     document.getElementById("bio").disabled = state;
  }
  
- //this will be updated to save information to DB
+
  $(document).ready(function(){
 // once login is set up this will be passed dynamically
     var userid = 1;
@@ -46,7 +46,7 @@
 
 
 
-
+// ajax call to put database data into the page
     $.ajax({
         type: "GET",
         url: "http://localhost:3000/users/"+userid,
@@ -83,6 +83,8 @@
 
 });
 
+
+// hiding and showing of edit, save and close buttons.
  $(document).ready(function(){
     $("#edit_button").click(function(){
         console.log("hide");
