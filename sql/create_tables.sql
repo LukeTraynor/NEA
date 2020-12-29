@@ -4,7 +4,7 @@ DROP DATABASE group_calendar
 
 --Drop table
 
---DROP TABLE group_calendar.users;
+--DROP TABLE group_calendar.Users;
 
 
 
@@ -14,10 +14,10 @@ CREATE DATABASE `group_calendar`;
 
 CREATE TABLE group_calendar.Users (
 UserID INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-Username VARCHAR(50),
+Username VARCHAR(50) UNIQUE,
 User_Password VARCHAR(50),
-FirstName VARCHAR(30) NOT NULL,
-LastName VARCHAR(30) NOT NULL,
+FirstName VARCHAR(30),
+LastName VARCHAR(30),
 Email VARCHAR(50),
 Bio VARCHAR(50),
 ImgLoc VARCHAR(50),
@@ -58,7 +58,7 @@ PRIMARY KEY (EventID, GroupID)
 
 -- create user
 
-INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `created_at`) VALUES ('Luke', 'pass', 'luke', 'traynor', 'luke@gmail.com', 'words words words', CURRENT_TIMESTAMP);
+INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `created_at`) VALUES ('Luke', 'pass', 'luke', 'traynor', NULL, 'words words words', CURRENT_TIMESTAMP);
 
 -- getting user
 

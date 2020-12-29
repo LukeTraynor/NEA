@@ -32,7 +32,6 @@
             data: JSON.stringify({
                 FirstName: "new3"
             }),
-            dataType: 'json', 
             crossDomain : true,
             success: function (res) {
                 console.log("it worked");

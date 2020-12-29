@@ -3,10 +3,21 @@ var app = express()
 var mysql = require('mysql');
 var cors = require('cors')
 var bodyParser = require('body-parser')
+var express = require('express');
+var session = require('express-session');
+var path = require('path');
+
+var app = express();
 app.use(cors())
 const Connection = require('mysql/lib/Connection');
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 var con = mysql.createConnection({
@@ -30,6 +41,48 @@ app.get('/Users/:UserID', function(request, response, next) {
       return response.send(result[0]);
     });
 });
+
+app.post('/Login', function(request, response) {
+	var Username = request.body.Username;
+	var User_Password = request.body.User_Password;
+	if (Username && User_Password) {
+		con.query('SELECT * FROM Users WHERE Username = \''+Username+'\'  AND User_Password = \''+User_Password+'\'', function(err, res, fields) {
+      if (res.length > 0) {
+				request.session.loggedin = true;
+				request.session.username = Username;
+        response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true"}))
+			} else {
+				response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
+			}			
+			response.end();
+		});
+	} else {
+		response.send(JSON.stringify({"message": "Please enter Username and Password!", "loggedin": "false"}));
+		response.end();
+	}
+});
+
+
+app.post('/Register', function(request, response, next) {
+  var Username = request.body.Username;
+  var User_Password = request.body.User_Password;
+  if (Username == "") {
+    return response.send("There has been an error in your username")
+  }
+  con.query('INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `created_at`) VALUES ( \''+Username+'\', \''+User_Password+'\', NULL , NULL, NULL, NULL, CURRENT_TIMESTAMP);', function(err, result, fields) 
+  {
+    console.log(err)
+    if (err) throw err;
+    return response.send(result[0]);
+    
+
+  });
+  console.log("error!!!!!!!!!!!");
+  
+});
+
+
+
 
 //UPDATING USER INFORMATION
 app.put('/Users/:UserID', function(request, response) {
