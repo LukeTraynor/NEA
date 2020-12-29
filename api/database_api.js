@@ -6,6 +6,7 @@ var bodyParser = require('body-parser')
 var express = require('express');
 var session = require('express-session');
 var path = require('path');
+const jwt = require("jsonwebtoken");
 
 var app = express();
 app.use(cors())
@@ -42,6 +43,9 @@ app.get('/Users/:UserID', function(request, response, next) {
     });
 });
 
+const jwtkey = "insertprivatekeyhere";
+const jwtexpiry = 35000;
+
 app.post('/Login', function(request, response) {
 	var Username = request.body.Username;
 	var User_Password = request.body.User_Password;
@@ -50,7 +54,14 @@ app.post('/Login', function(request, response) {
       if (res.length > 0) {
 				request.session.loggedin = true;
 				request.session.username = Username;
-        response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true"}))
+        const token = jwt.sign({
+        Username}, jwtkey,{
+        algorithm: "HS256", 
+        expiresIn: jwtexpiry
+      });
+        console.log(token)
+        console.log(verify(token))
+        response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "token": token}))
 			} else {
 				response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
 			}			
@@ -61,6 +72,18 @@ app.post('/Login', function(request, response) {
 		response.end();
 	}
 });
+
+function verify(token){
+  var verifiedJwt
+  try {
+    verifiedJwt = jwt.verify(token,jwtkey);
+  } catch(err) {
+    return  res.status(400).send('invalid token')
+  }
+  return verifiedJwt.Username
+}
+    
+    
 
 
 app.post('/Register', function(request, response, next) {

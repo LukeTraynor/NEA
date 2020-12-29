@@ -38,6 +38,7 @@ $(document).ready(function(){
             },
             crossDomain : true,
             success: function (res) {
+                window.location.href = "file:///Users/luketraynor/Documents/NEA/site/public/profile.html"
                 console.log("it worked");
          
             },
