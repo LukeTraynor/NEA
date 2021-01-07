@@ -61,6 +61,7 @@ app.post('/Login', function(request, response) {
       });
         console.log(token)
         console.log(verify(token))
+        console.log("UserID:" + GetID(Username))
         response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "token": token}))
 			} else {
 				response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
@@ -78,12 +79,25 @@ function verify(token){
   try {
     verifiedJwt = jwt.verify(token,jwtkey);
   } catch(err) {
+    //change this to catch specific errors
     return  res.status(400).send('invalid token')
   }
   return verifiedJwt.Username
 }
     
-    
+async function GetID(Username){
+  var result
+  con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
+  {
+    console.log("UserID2:"+parseInt(result[0].UserID));
+    if (err) throw err;
+    return await (result[0].UserID);
+    // var answer = result[0].UserID;
+     
+
+  });
+  // return parseInt(result[0].UserID);
+}
 
 
 app.post('/Register', function(request, response, next) {
