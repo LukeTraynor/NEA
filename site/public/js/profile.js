@@ -19,6 +19,9 @@
     $("#save_button").click(function(){
 
         var fname = document.getElementById('first_name').value
+        var email = document.getElementById("email").disabled = state;
+        var lname = document.getElementById("last_name").disabled = state;
+        var bio = document.getElementById("bio").disabled = state;
         console.log("this will save information");
         console.log(fname);
         var requestbody ={
@@ -30,9 +33,8 @@
             contentType: 'application/json',
            // data: JSON.stringify(requestbody),
             data: JSON.stringify({
-                FirstName: "new3"
+                "FirstName": fname
             }),
-            dataType: 'json', 
             crossDomain : true,
             success: function (res) {
                 console.log("it worked");
