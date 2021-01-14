@@ -6,3 +6,5 @@
 
 #api
 api/node_modules/*
+
+.DS_Store
