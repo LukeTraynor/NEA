@@ -85,13 +85,16 @@ function verify(token){
   return verifiedJwt.Username
 }
     
-async function GetID(Username){
+function GetID(Username){
   var result
   con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
   {
+    setTimeout(function(){
+      if (err) throw err;
+      return (result[0].UserID);
+  }, 2000);
     console.log("UserID2:"+parseInt(result[0].UserID));
-    if (err) throw err;
-    return await (result[0].UserID);
+    
     // var answer = result[0].UserID;
      
 
