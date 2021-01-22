@@ -19,13 +19,16 @@
     $("#save_button").click(function(){
 
         var fname = document.getElementById('first_name').value
-        var email = document.getElementById("email").disabled = state;
-        var lname = document.getElementById("last_name").disabled = state;
-        var bio = document.getElementById("bio").disabled = state;
+        var email = document.getElementById("email").value;
+        var lname = document.getElementById("last_name").value;
+        var bio = document.getElementById("bio").value;
         console.log("this will save information");
         console.log(fname);
         var requestbody ={
-            "FirstName": document.getElementById('first_name').value
+            "FirstName": document.getElementById('first_name').value,
+            "Email" : document.getElementById("email").value,
+            "LastName" : document.getElementById("last_name").value,
+            "Bio" : document.getElementById("bio").value
         }
         $.ajax({
             type: "PUT",
@@ -33,7 +36,10 @@
             contentType: 'application/json',
            // data: JSON.stringify(requestbody),
             data: JSON.stringify({
-                "FirstName": fname
+                "FirstName": fname,
+                "Email": email,
+                "LastName": lname,
+                "Bio": bio
             }),
             crossDomain : true,
             success: function (res) {
