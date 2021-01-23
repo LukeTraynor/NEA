@@ -61,7 +61,9 @@ app.post('/Login', function(request, response) {
       });
         console.log(token)
         console.log(verify(token))
-        console.log("UserID:" + GetID(Username))
+        setTimeout(function(){
+          console.log("UserID1:" + GetID(Username))
+        }, 1000);
         response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "token": token}))
 			} else {
 				response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
@@ -85,13 +87,15 @@ function verify(token){
   return verifiedJwt.Username
 }
     
-async function GetID(Username){
+function GetID(Username){
   var result
   con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
   {
-    console.log("UserID2:"+parseInt(result[0].UserID));
     if (err) throw err;
-    return await (result[0].UserID);
+    return (result[0].UserID);
+    console.log("UserID2:"+parseInt(result[0].UserID));
+   
+    
     // var answer = result[0].UserID;
      
 
@@ -126,12 +130,15 @@ app.put('/Users/:UserID', function(request, response) {
 
   //var profileBody = request.body;
 var FirstName = request.body.FirstName;
+var LastName = request.body.LastName;
+var Email = request.body.Email;
+var Bio = request.body.Bio;
 
 // if(profileBody["FirstName"]!= null){
 //   FirstName = profileBody["FirstName"];
 // }
 
-  con.query('UPDATE Users SET FirstName = \''+FirstName+'\' WHERE UserID = '+ request.params.UserID +';', function(err, result, fields) 
+  con.query('UPDATE Users SET FirstName = \''+FirstName+'\', Lastname = \''+LastName+'\',Email = \''+Email+'\', Bio= \''+Bio+'\' WHERE UserID = '+ request.params.UserID +';', function(err, result, fields) 
   {
     if (err) throw err;
     //return response.send(result[0]);
