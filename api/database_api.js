@@ -170,7 +170,7 @@ app.put('/Groups/:GroupID', function(request, response) {
 var GroupName = request.body.GroupName;
 var Bio = request.body.Bio;
 
-  con.query('UPDATE `Groups` SET GroupName = \''+FirstName+'\', Bio= \''+Bio+'\' WHERE GroupID = '+ request.params.GroupID +';', function(err, result, fields) 
+  con.query('UPDATE `Groups` SET GroupName = \''+GroupName+'\', Bio= \''+Bio+'\' WHERE GroupID = '+ request.params.GroupID +';', function(err, result, fields) 
   {
     if (err) throw err;
     //return response.send(result[0]);
