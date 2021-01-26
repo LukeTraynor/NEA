@@ -164,6 +164,21 @@ app.get('/Events/:EventID', function(request, response, next) {
   });
 });
 
+app.put('/Events/:EventID', function(request, response) {
+
+  var EventName = request.body.EventName;
+  var Bio = request.body.Bio;
+  var DateOfEvent = request.body.DateOfEvent;
+  var LocationOfEvent = request.body.LocationOfEvent;
+  
+    con.query('UPDATE Events SET EventName = \''+EventName+'\', Bio= \''+Bio+'\' WHERE EventID = '+ request.params.EventID +';', function(err, result, fields) 
+    {
+      if (err) throw err;
+      //return response.send(result[0]);
+      return response.send("success");
+     });
+  });
+
 //UPDATING GROUP INFORMATION
 app.put('/Groups/:GroupID', function(request, response) {
 
@@ -177,6 +192,7 @@ var Bio = request.body.Bio;
     return response.send("success");
    });
 });
+
 
 
 app.get('/Groups/:GroupID', function(request, response, next) {
