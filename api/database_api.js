@@ -61,9 +61,13 @@ app.post('/Login', function(request, response) {
       });
         console.log(token)
         console.log(verify(token))
-        setTimeout(function(){
-          console.log("UserID1:" + GetID(Username))
-        }, 1000);
+        //setTimeout(function(){
+        var test = '';
+        GetID(Username, function(result){
+          test = result;
+        });
+        console.log("UserID1:" + GetID(Username))
+        //}, 1000);
         response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "token": token}))
 			} else {
 				response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
@@ -87,20 +91,20 @@ function verify(token){
   return verifiedJwt.Username
 }
     
-function GetID(Username){
+function GetID(Username, callback){
   var result
   con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
   {
     if (err) throw err;
-    return (result[0].UserID);
-    console.log("UserID2:"+parseInt(result[0].UserID));
-   
     
-    // var answer = result[0].UserID;
+    console.log("UserID2:"+parseInt(result[0].UserID));
+    test = (result[0].UserID);
+
+    return callback(result[0].UserID);
+    
      
 
   });
-  // return parseInt(result[0].UserID);
 }
 
 
