@@ -92,3 +92,11 @@ request body = pass through all parameters
 POST Users
 request body = pass through all parameters
 
+## Hosting pages on a web server
+done locally very basic http server
+python -m SimpleHTTPServer 8000
+this is required in order to make use of cookies cant be done when serving the html files directly through the browser
+
+
+
+delete cookie when leaving.

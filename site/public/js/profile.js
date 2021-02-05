@@ -16,6 +16,8 @@
 // once login is set up this will be passed dynamically
     var userid = 1;
 
+    //if cookie doesnt exist redirect to login page
+
     $("#save_button").click(function(){
 
         var fname = document.getElementById('first_name').value
@@ -92,6 +94,28 @@
 
 });
 
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+$(document).ready(function(){
+    $("#see_cookie").click(function(){
+        console.log(getCookie("Username"))
+        console.log("hello")
+    });
+});
 
 // hiding and showing of edit, save and close buttons.
  $(document).ready(function(){
@@ -100,6 +124,7 @@
       $("#edit_button").hide();
       $("#save_close_button").show();
       $("#upload_pic").show();
+      console.log(getCookie("Username"))
       toggle_readonly(false);
     });
     $("#close_button").click(function(){

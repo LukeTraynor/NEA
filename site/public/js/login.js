@@ -23,6 +23,36 @@ $(document).ready(function(){
     });
 });
 
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+$(document).ready(function(){
+    $("#create_cookie").click(function(){
+        setCookie("Username", "luke", 2);
+        console.log(getCookie("Username"))
+    });
+});
+
 $(document).ready(function(){
     $("#sign_in_button").click(function(){
         var Username = document.getElementById('inputEmail').value
@@ -38,7 +68,8 @@ $(document).ready(function(){
             },
             crossDomain : true,
             success: function (res) {
-                window.location.href = "file:///Users/luketraynor/Documents/NEA/site/public/profile.html"
+                
+                window.location.href = "http://localhost:8000/profile.html"
                 console.log("it worked");
          
             },

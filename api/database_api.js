@@ -62,11 +62,17 @@ app.post('/Login', function(request, response) {
         console.log(token)
         console.log(verify(token))
         //setTimeout(function(){
-        var test = '';
-        GetID(Username, function(result){
-          test = result;
+        // var test = '';
+        // GetID(Username, function(result){
+        //   test = result;
+        //});
+        
+        var test = ""
+        test = getIDCall(Username, function(returnValue) {
+          test = returnValue// use the return value here instead of like a regular (non-evented) return value
         });
-        console.log("UserID1:" + GetID(Username))
+        console.log(test);
+        //console.log("UserID1:" + GetID(Username))
         //}, 1000);
         response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "token": token}))
 			} else {
@@ -90,6 +96,21 @@ function verify(token){
   }
   return verifiedJwt.Username
 }
+
+function getIDCall(Username, callback) {
+  con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
+  {
+    if (err) throw err;
+    
+    console.log("UserID2:"+parseInt(result[0].UserID));
+    test = (result[0].UserID);
+
+    return callback(result[0].UserID);
+    
+     
+
+  });
+}
     
 function GetID(Username, callback){
   var result
@@ -106,6 +127,42 @@ function GetID(Username, callback){
 
   });
 }
+
+// async function operation() {
+//   return new Promise(function(resolve, reject) {
+//     con.query('SELECT UserID FROM `Users` WHERE Username = "Luke"', function(err, result, fields) 
+//     {
+//       if (err) throw err;
+//       console.log(result[0].UserID)
+//       var a = 5
+//       // may be a heavy db call or http request?
+//       resolve(a); // successfully fill promise
+//   });
+// })
+// }
+
+// async function app() {
+//   var a = await operation() // a is 5
+// }
+
+// async function operation() {
+//   return new Promise(function(resolve, reject) {
+//       var a = 0;
+//       var b = 1;
+//       a = a + b;
+//       a = 5;
+//       console.log(a)
+//       // may be a heavy db call or http request?
+//       resolve(a) // successfully fill promise
+//   })
+// }
+
+// async function app() {
+//   var a = await operation() // a is 5
+// }
+
+
+
 
 
 app.post('/Register', function(request, response, next) {
