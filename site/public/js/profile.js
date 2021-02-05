@@ -76,13 +76,14 @@
     //Get Groups
     $.ajax({
         type: "GET",
-        url: "http://localhost:3000/Groups/"+userid,
+        url: "http://localhost:3000/Users/Groups/"+userid,
         dataType: 'json', 
         crossDomain : true,
         success: function (res) {
             console.log("it worked");
             console.log(res.GroupName);
-         
+            document.getElementById('group_name').value = res.GroupName;
+            document.getElementById('group_bio').value = res.Bio;
         },
         error: function (res, err) {
             console.log("it did not work");

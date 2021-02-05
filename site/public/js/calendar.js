@@ -1,9 +1,9 @@
 var CURRENT_DATE = new Date();
 var d = new Date();
 
-var content = 'January February March April May June July August September October November December'.split(' ');
+var months = 'January February March April May June July August September October November December'.split(' ');
 var weekDayName = 'SUN MON TUES WED THURS FRI'.split(' ');
-var daysOfMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 // Returns the day of week which month starts (eg 0 for Sunday, 1 for Monday, etc.)
 function getCalendarStart(dayOfWeek, currentDate) {
@@ -66,12 +66,12 @@ function myCalendar() {
   var day = d.getUTCDay();
   var year = d.getUTCFullYear();
   var date = d.getUTCDate();
-  var totalDaysOfMonth = daysOfMonth[month];
+  var totalDaysInMonth = daysInMonth[month];
   var counter = 1;
 
   var $h3 = $('<h3>');
 
-  $h3.text(content[month] + ' ' + year);
+  $h3.text(months[month] + ' ' + year);
   $h3.appendTo('.month-year');
 
   var dateToHighlight = 0;
@@ -84,12 +84,12 @@ function myCalendar() {
   //Getting February Days Including The Leap Year
   if (month === 1) {
     if ((year % 100 !== 0) && (year % 4 === 0) || (year % 400 === 0)) {
-      totalDaysOfMonth = 29;
+      totalDaysInMonth = 29;
     }
   }
 
   // Get Start Day
-  renderCalendar(getCalendarStart(day, date), totalDaysOfMonth, dateToHighlight);
+  renderCalendar(getCalendarStart(day, date), totalDaysInMonth, dateToHighlight);
 };
 
 function navigationHandler(dir) {
