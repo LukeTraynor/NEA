@@ -48,7 +48,7 @@
 </nav>
 <main role="main" class="container"></main>
     <div class="my-3 p-3 bg-white rounded box-shadow">
-        <h6 class="border-bottom border-gray pb-2 mb-0">MyEvent</h6>
+        <h6 class="border-bottom border-gray pb-2 mb-0">MyGroup</h6>
         <div class="container" id="profile_details">
             <div class="row">
                 <div class="col-4 text-center align-items-center" id="profile_image">
@@ -103,9 +103,12 @@
                                 </div>
                     
                                 <div class="col" id="group_bio">
-                                    <form>
-                                        <h1 class="text-center">User Name</h1>
-                                        
+                                    <div class="form-group">
+                                        <input type="group_name" class="form-control" id="users_name" aria-describedby="emailHelp" placeholder="" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="users_bio" rows="3" disabled></textarea>
+                                    </div> 
                                 </div>
                             </div>
             

@@ -66,6 +66,21 @@ $(document).ready(function(){
             });
     
         });
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/Groups/Users/"+GroupID,
+            dataType: 'json', 
+            crossDomain : true,
+            success: function (res) {
+                console.log("it worked");
+                console.log(res.GroupName);
+                document.getElementById('users_name').value = res.Username;
+                document.getElementById('users_bio').value = res.Bio;
+            },
+            error: function (res, err) {
+                console.log("it did not work");
+            },
+        });
 });
 
  $(document).ready(function(){

@@ -159,6 +159,15 @@ app.get('/Users/Groups/:UserID', function(request, response, next) {
   });
 });
 
+//GET all users in a group
+app.get('/Groups/Users/:GroupID', function(request, response, next) {
+  con.query('SELECT Users.Username, Users.Bio, Users.ImgLoc, Users.UserID FROM `Users`, `Groups` WHERE GroupID = ' + request.params.GroupID, function(err, result, fields) 
+  {
+    if (err) throw err;
+    return response.send(result[0]);
+  });
+});
+
 
 app.get('/Events/:EventID', function(request, response, next) {
   con.query('SELECT * FROM Events WHERE EventID = ' + request.params.EventID, function(err, result, fields) 
