@@ -15,8 +15,8 @@ function getCalendarStart(dayOfWeek, currentDate) {
   return Math.abs(startOffset);
 }
 
-// Render Calendar
-function renderCalendar(startDay, totalDays, currentDate) {
+// Creating the Calendar
+function CreateCalendar(startDay, totalDays, currentDate) {
   var currentRow = 1;
   var currentDay = startDay;
   var $table = $('table');
@@ -50,7 +50,7 @@ function clearCalendar() {
   $('.month-year').empty();
 }
 
-// Generates table row used when rendering Calendar
+// Generates table row used when creating Calendar
 function getCalendarRow() {
   var $table = $('table');
   var $tr = $('<tr/>');
@@ -89,7 +89,7 @@ function myCalendar() {
   }
 
   // Get Start Day
-  renderCalendar(getCalendarStart(day, date), totalDaysInMonth, dateToHighlight);
+  CreateCalendar(getCalendarStart(day, date), totalDaysInMonth, dateToHighlight);
 };
 
 function navigationHandler(dir) {
