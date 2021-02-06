@@ -117,6 +117,14 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    $("#log_out").click(function(){
+        console.log("testing")
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        console.log("testing")
+    });
+});
+
 // hiding and showing of edit, save and close buttons.
  $(document).ready(function(){
     $("#edit_button").click(function(){
