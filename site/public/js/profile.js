@@ -113,9 +113,26 @@ function getCookie(cname) {
 $(document).ready(function(){
     $("#see_cookie").click(function(){
         console.log(getCookie("Username"))
-        console.log("hello")
+        console.log("hell23o")
     });
 });
+
+$(document).ready(function(){
+    $("#log_out").click(function(){
+        document.cookie = "Username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href = "http://localhost:8000/login.html"
+        console.log("log out button works")
+    });
+});
+
+
+// $(document).ready(function(){
+//     $("#log_out").click(function(){
+//         console.log("testing")
+//         document.cookie = "Username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+//         console.log("testing")
+//     });
+// });
 
 // hiding and showing of edit, save and close buttons.
  $(document).ready(function(){
@@ -124,7 +141,6 @@ $(document).ready(function(){
       $("#edit_button").hide();
       $("#save_close_button").show();
       $("#upload_pic").show();
-      console.log(getCookie("Username"))
       toggle_readonly(false);
     });
     $("#close_button").click(function(){

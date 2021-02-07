@@ -14,9 +14,30 @@ function getCookie(cname) {
     return "";
   }
 
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+$(document).ready(function(){
+    $("#create_cookie").click(function(){
+        setCookie("Username", "luke", 2);
+        console.log(getCookie("Username"))
+    });
+});
+
 $(document).ready(function(){
     $("#see_cookie").click(function(){
         console.log(getCookie("Username"))
-        console.log("hello")
+        console.log("working")
+    });
+});
+
+$(document).ready(function(){
+    $("#delete_cookie").click(function(){
+        console.log("this button works")
+        document.cookie = "Username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     });
 });
