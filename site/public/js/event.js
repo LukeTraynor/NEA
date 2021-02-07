@@ -66,6 +66,14 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
+    $("#log_out").click(function(){
+        document.cookie = "Username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href = "http://localhost:8000/login.html"
+        console.log("log out button works")
+    });
+});
+
+$(document).ready(function(){
     $("#edit_button").click(function(){
         console.log("hide");
       $("#edit_button").hide();

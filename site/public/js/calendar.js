@@ -15,6 +15,15 @@ function getCalendarStart(dayOfWeek, currentDate) {
   return Math.abs(startOffset);
 }
 
+//log out function
+$(document).ready(function(){
+  $("#log_out").click(function(){
+      document.cookie = "Username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      window.location.href = "http://localhost:8000/login.html"
+      console.log("log out button works")
+  });
+});
+
 // Creating the Calendar
 function CreateCalendar(startDay, totalDays, currentDate) {
   var currentRow = 1;
