@@ -48,8 +48,8 @@ function getCookie(cname) {
 
 $(document).ready(function(){
     $("#create_cookie").click(function(){
-        setCookie("Username", "luke", 2);
-        console.log(getCookie("Username"))
+        setCookie("UserID", 1, 2);
+        console.log(getCookie("UserID"))
     });
 });
 
