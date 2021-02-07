@@ -14,7 +14,8 @@
 
  $(document).ready(function(){
 // once login is set up this will be passed dynamically
-    var userid = 1;
+    var userid = getCookie("UserID");
+    console.log(userid)
 
     //if cookie doesnt exist redirect to login page
 
