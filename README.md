@@ -98,5 +98,5 @@ python -m SimpleHTTPServer 8000
 this is required in order to make use of cookies cant be done when serving the html files directly through the browser
 
 
-
-delete cookie when leaving.
+## hashing
+npm install --save bcrypt

@@ -23,21 +23,23 @@ function getCookie(cname) {
 
 $(document).ready(function(){
     $("#create_cookie").click(function(){
-        setCookie("Username", "luke", 2);
-        console.log(getCookie("Username"))
+        setCookie("UserID", 1, 2);
+        console.log(getCookie("UserID"))
     });
 });
 
 $(document).ready(function(){
     $("#see_cookie").click(function(){
-        console.log(getCookie("Username"))
+        console.log(getCookie("UserID"))
         console.log("working")
+        var x = getCookie("UserID")
+        console.log(x)
     });
 });
 
 $(document).ready(function(){
     $("#delete_cookie").click(function(){
         console.log("this button works")
-        document.cookie = "Username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     });
 });

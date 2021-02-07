@@ -14,7 +14,8 @@
 
  $(document).ready(function(){
 // once login is set up this will be passed dynamically
-    var userid = 1;
+    var userid = getCookie("UserID");
+    console.log(userid)
 
     //if cookie doesnt exist redirect to login page
 
@@ -112,14 +113,14 @@ function getCookie(cname) {
 
 $(document).ready(function(){
     $("#see_cookie").click(function(){
-        console.log(getCookie("Username"))
+        console.log(getCookie("UserID"))
         console.log("hell23o")
     });
 });
 
 $(document).ready(function(){
     $("#log_out").click(function(){
-        document.cookie = "Username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         window.location.href = "http://localhost:8000/login.html"
         console.log("log out button works")
     });
