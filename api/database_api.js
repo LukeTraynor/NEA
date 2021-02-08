@@ -7,6 +7,8 @@ var express = require('express');
 var session = require('express-session');
 var path = require('path');
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+const saltRounds = 3;
 
 var app = express();
 app.use(cors())
@@ -168,19 +170,25 @@ function GetID(Username, callback){
 app.post('/Register', function(request, response, next) {
   var Username = request.body.Username;
   var User_Password = request.body.User_Password;
-  if (Username == "") {
-    return response.send("There has been an error in your username")
-  }
-  con.query('INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `created_at`) VALUES ( \''+Username+'\', \''+User_Password+'\', NULL , NULL, NULL, NULL, CURRENT_TIMESTAMP);', function(err, result, fields) 
-  {
-    console.log(err)
-    if (err) throw err;
-    return response.send(result[0]);
-    
-
-  });
-  console.log("error!!!!!!!!!!!");
-  
+  bcrypt.genSalt(saltRounds, (err, salt) => {
+    bcrypt.hash(User_Password, salt, (err, hash) => {
+        // Now we can store the password hash in db.
+        console.log(hash)
+        if (Username == "") {
+          return response.send("There has been an error in your username")
+        }
+        con.query('INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `created_at`) VALUES ( \''+Username+'\', \''+hash+'\', NULL , NULL, NULL, NULL, CURRENT_TIMESTAMP);', function(err, result, fields) 
+        {
+          console.log(err)
+          if (err) throw err;
+          return response.send(result[0]);
+          
+      
+        });
+        console.log("error!!!!!!!!!!!");
+        
+      });
+    });
 });
 
 
