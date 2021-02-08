@@ -7,6 +7,8 @@ var express = require('express');
 var session = require('express-session');
 var path = require('path');
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+const saltRounds = 3;
 
 var app = express();
 app.use(cors())
@@ -48,69 +50,75 @@ const jwtexpiry = 35000;
 
 app.post('/Login', function(request, response) {
 	var Username = request.body.Username;
-	var User_Password = request.body.User_Password;
-	if (Username && User_Password) {
-		con.query('SELECT * FROM Users WHERE Username = \''+Username+'\'  AND User_Password = \''+User_Password+'\'', function(err, res, fields) {
-      if (res.length > 0) {
-				request.session.loggedin = true;
-				request.session.username = Username;
-        const token = jwt.sign({
-        Username}, jwtkey,{
-        algorithm: "HS256", 
-        expiresIn: jwtexpiry
-      });
-        console.log(token)
-        console.log(verify(token))
-        //setTimeout(function(){
-        // var test = '';
-        // GetID(Username, function(result){
-        //   test = result;
-        //});
-        
-        var test = ""
-        test = getIDCall(Username, function(returnValue) {
-          test = returnValue// use the return value here instead of like a regular (non-evented) return value
+  var User_Password = request.body.User_Password;
+  //bcrypt.compare(InputPassword, hash, function(err, res) {
+    bcrypt.hash(User_Password, saltRounds, (err, hash) => {
+      if (Username && User_Password) {
+        con.query('SELECT * FROM Users WHERE Username = \''+Username+'\'  AND User_Password = \''+hash+'\'', function(err, res, fields) {
+          
+          
+          if (res.length > 0) {
+            request.session.loggedin = true;
+            request.session.username = Username;
+            const token = jwt.sign({
+            Username}, jwtkey,{
+            algorithm: "HS256", 
+            expiresIn: jwtexpiry
+          });
+            console.log(token)
+            console.log(verify(token))
+            //setTimeout(function(){
+            // var test = '';
+            // GetID(Username, function(result){
+            //   test = result;
+            //});
+            
+            var test = ""
+            test = getIDCall(Username, function(returnValue) {
+              test = returnValue// use the return value here instead of like a regular (non-evented) return value
+            });
+            console.log(test);
+            //console.log("UserID1:" + GetID(Username))
+            //}, 1000);
+            response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "token": token}))
+          } else {
+            response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
+          }			
+          response.end();
         });
-        console.log(test);
-        //console.log("UserID1:" + GetID(Username))
-        //}, 1000);
-        response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "token": token}))
-			} else {
-				response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
-			}			
-			response.end();
-		});
-	} else {
-		response.send(JSON.stringify({"message": "Please enter Username and Password!", "loggedin": "false"}));
-		response.end();
-	}
-});
-
-function verify(token){
-  var verifiedJwt
-  try {
-    verifiedJwt = jwt.verify(token,jwtkey);
-  } catch(err) {
-    //change this to catch specific errors
-    return  res.status(400).send('invalid token')
-  }
-  return verifiedJwt.Username
-}
-
-function getIDCall(Username, callback) {
-  con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
-  {
-    if (err) throw err;
+      } else {
+        response.send(JSON.stringify({"message": "Please enter Username and Password!", "loggedin": "false"}));
+        response.end();
+      }
+    });
     
-    console.log("UserID2:"+parseInt(result[0].UserID));
-    test = (result[0].UserID);
-
-    return callback(result[0].UserID);
+    function verify(token){
+      var verifiedJwt
+      try {
+        verifiedJwt = jwt.verify(token,jwtkey);
+      } catch(err) {
+        //change this to catch specific errors
+        return  res.status(400).send('invalid token')
+      }
+      return verifiedJwt.Username
+    }
     
-     
-
-  });
-}
+    function getIDCall(Username, callback) {
+      con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
+      {
+        if (err) throw err;
+        
+        console.log("UserID2:"+parseInt(result[0].UserID));
+        test = (result[0].UserID);
+    
+        return callback(result[0].UserID);
+        
+         
+    
+      });
+    }
+    });
+	
     
 function GetID(Username, callback){
   var result
@@ -168,19 +176,25 @@ function GetID(Username, callback){
 app.post('/Register', function(request, response, next) {
   var Username = request.body.Username;
   var User_Password = request.body.User_Password;
-  if (Username == "") {
-    return response.send("There has been an error in your username")
-  }
-  con.query('INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `created_at`) VALUES ( \''+Username+'\', \''+User_Password+'\', NULL , NULL, NULL, NULL, CURRENT_TIMESTAMP);', function(err, result, fields) 
-  {
-    console.log(err)
-    if (err) throw err;
-    return response.send(result[0]);
-    
-
-  });
-  console.log("error!!!!!!!!!!!");
-  
+  bcrypt.genSalt(saltRounds, (err, salt) => {
+    bcrypt.hash(User_Password, salt, (err, hash) => {
+        // Now we can store the password hash in db.
+        console.log(hash)
+        if (Username == "") {
+          return response.send("There has been an error in your username")
+        }
+        con.query('INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `created_at`) VALUES ( \''+Username+'\', \''+hash+'\', NULL , NULL, NULL, NULL, CURRENT_TIMESTAMP);', function(err, result, fields) 
+        {
+          console.log(err)
+          if (err) throw err;
+          return response.send(result[0]);
+          
+      
+        });
+        console.log("error!!!!!!!!!!!");
+        
+      });
+    });
 });
 
 

@@ -15,7 +15,7 @@ CREATE DATABASE `group_calendar`;
 CREATE TABLE group_calendar.Users (
 UserID INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 Username VARCHAR(50) UNIQUE,
-User_Password VARCHAR(50),
+User_Password VARCHAR(150),
 FirstName VARCHAR(30),
 LastName VARCHAR(30),
 Email VARCHAR(50),
