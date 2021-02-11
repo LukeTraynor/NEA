@@ -23,6 +23,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+// connecting to the sql database
 var con = mysql.createConnection({
   host: "localhost",
   port:"32768",
@@ -31,12 +32,13 @@ var con = mysql.createConnection({
   database: "group_calendar"
 });
 
+//quick function to test if successful connection
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
 });
 
-
+//using the usersID to grab the rest of their data
 app.get('/Users/:UserID', function(request, response, next) {
     con.query('SELECT * FROM Users WHERE UserID = ' + request.params.UserID, function(err, result, fields) 
     {
@@ -48,6 +50,7 @@ app.get('/Users/:UserID', function(request, response, next) {
 const jwtkey = "insertprivatekeyhere";
 const jwtexpiry = 35000;
 
+// the login which also hashes the users plaintext password and compares the hash to the database
 app.post('/Login', function(request, response) {
 	var Username = request.body.Username;
   var User_Password = request.body.User_Password;
@@ -92,6 +95,7 @@ app.post('/Login', function(request, response) {
       }
     });
     
+    //function to verify the jwt token 
     function verify(token){
       var verifiedJwt
       try {
@@ -172,7 +176,7 @@ function GetID(Username, callback){
 
 
 
-
+//register api that adds the users username and password into the database - also hashes the password and saves the hash
 app.post('/Register', function(request, response, next) {
   var Username = request.body.Username;
   var User_Password = request.body.User_Password;
