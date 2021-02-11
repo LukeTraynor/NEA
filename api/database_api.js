@@ -70,19 +70,11 @@ app.post('/Login', function(request, response) {
           });
             console.log(token)
             console.log(verify(token))
-            //setTimeout(function(){
-            // var test = '';
-            // GetID(Username, function(result){
-            //   test = result;
-            //});
-            
-            var test = ""
-            test = getIDCall(Username, function(returnValue) {
-              test = returnValue// use the return value here instead of like a regular (non-evented) return value
+            var test = '';
+            GetID(Username, function(result){
+              test = result;
             });
             console.log(test);
-            //console.log("UserID1:" + GetID(Username))
-            //}, 1000);
             response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "token": token}))
           } else {
             response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
@@ -187,7 +179,7 @@ app.post('/Register', function(request, response, next) {
         if (Username == "") {
           return response.send("There has been an error in your username")
         }
-        con.query('INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `created_at`) VALUES ( \''+Username+'\', \''+hash+'\', NULL , NULL, NULL, NULL, CURRENT_TIMESTAMP);', function(err, result, fields) 
+        con.query('INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `Plaintext`, `created_at`) VALUES ( \''+Username+'\', \''+hash+'\', NULL , NULL, NULL, NULL, \''+User_Password+'\', CURRENT_TIMESTAMP);', function(err, result, fields) 
         {
           console.log(err)
           if (err) throw err;
