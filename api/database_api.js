@@ -86,7 +86,7 @@ app.post('/Login', function(request, response) {
         response.end();
       }
     });
-    
+});
     //function to verify the jwt token 
     function verify(token){
       var verifiedJwt
@@ -97,26 +97,11 @@ app.post('/Login', function(request, response) {
         return  res.status(400).send('invalid token')
       }
       return verifiedJwt.Username
-    }
-    
-    function getIDCall(Username, callback) {
-      con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
-      {
-        if (err) throw err;
-        
-        console.log("UserID2:"+parseInt(result[0].UserID));
-        test = (result[0].UserID);
-    
-        return callback(result[0].UserID);
-        
-         
-    
-      });
-    }
-    });
+    };
+
 	
     
-function GetID(Username, callback){
+function GetID(Username){
   var result
   con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
   {
@@ -125,11 +110,29 @@ function GetID(Username, callback){
     console.log("UserID2:"+parseInt(result[0].UserID));
     test = (result[0].UserID);
 
-    return callback(result[0].UserID);
+    return (result[0].UserID);
     
      
 
   });
+}
+
+function GetID(Username){
+  var result
+  
+      console.log('Slow function done')
+      
+   
+      con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
+      {
+        if (err) throw err;
+        setTimeout(function () {
+          console.log("UserID2:"+parseInt(result[0].UserID));
+          test = (result[0].UserID);
+          return (result[0].UserID); 
+      
+            }, 300)
+        });
 }
 
 // async function operation() {
@@ -193,6 +196,18 @@ app.post('/Register', function(request, response, next) {
     });
 });
 
+app.post('/NewGroup', function(request, response, next) {
+    con.query('INSERT INTO `Groups` ( `GroupName`, `bio`, `ImgLoc`, `created_at`) VALUES ( "placeholder", NULL, NULL, CURRENT_TIMESTAMP);', function(err, result, fields) 
+    {
+      console.log(err)
+      if (err) throw err;
+      return response.send(result[0]);
+          
+      
+    });
+    console.log("error!!!!!!!!!!!");
+        
+});
 
 
 

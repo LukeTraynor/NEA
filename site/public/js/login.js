@@ -58,7 +58,8 @@ $(document).ready(function(){
         var Username = document.getElementById('inputEmail').value
         var User_Password = document.getElementById('inputPassword').value
         console.log(Username);
-    
+        setCookie("UserID", 1, 2);
+
         $.ajax({
             type: "POST",
             url: "http://localhost:3000/Login",
