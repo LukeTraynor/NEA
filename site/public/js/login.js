@@ -58,25 +58,45 @@ $(document).ready(function(){
         var Username = document.getElementById('inputEmail').value
         var User_Password = document.getElementById('inputPassword').value
         console.log(Username);
-        setCookie("UserID", 1, 2);
-
+        
+        
         $.ajax({
-            type: "POST",
-            url: "http://localhost:3000/Login",
+            type: "GET",
+            url: "http://localhost:3000/Login2",
+            dataType: 'json', 
+            crossDomain : true,
             data: {
                 "Username": Username,
-                "User_Password": User_Password
             },
-            crossDomain : true,
             success: function (res) {
-                
-                window.location.href = "http://localhost:8000/profile.html"
                 console.log("it worked");
-         
+                console.log(res.UserID);
+                setCookie("UserID", res.UserID, 2);
             },
             error: function (res, err) {
                 console.log("it did not work");
+                console.log(res.UserID);
             },
         });
+
+        // $.ajax({
+        //     type: "POST",
+        //     url: "http://localhost:3000/Login",
+        //     data: {
+        //         "Username": Username,
+        //         "User_Password": User_Password
+                
+        //     },
+        //     crossDomain : true,
+        //     success: function (res) {
+                
+        //         window.location.href = "http://localhost:8000/profile.html"
+        //         console.log("it worked");
+         
+        //     },
+        //     error: function (res, err) {
+        //         console.log("it did not work");
+        //     },
+        // });
     });
 });

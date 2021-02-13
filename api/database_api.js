@@ -56,11 +56,8 @@ app.post('/Login', function(request, response) {
   var User_Password = request.body.User_Password;
   //bcrypt.compare(InputPassword, hash, function(err, res) {
     bcrypt.hash(User_Password, saltRounds, (err, hash) => {
-      if (Username && User_Password) {
         con.query('SELECT * FROM Users WHERE Username = \''+Username+'\'  AND User_Password = \''+hash+'\'', function(err, res, fields) {
-          
-          
-          if (res.length > 0) {
+  
             request.session.loggedin = true;
             request.session.username = Username;
             const token = jwt.sign({
@@ -70,24 +67,29 @@ app.post('/Login', function(request, response) {
           });
             console.log(token)
             console.log(verify(token))
-            var test = '';
-            GetID(Username, function(result){
-              test = result;
-            });
-            console.log(test);
+            
             response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "token": token}))
-          } else {
-            response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
-          }			
-          response.end();
+
         });
-      } else {
-        response.send(JSON.stringify({"message": "Please enter Username and Password!", "loggedin": "false"}));
-        response.end();
-      }
     });
 });
-    //function to verify the jwt token 
+
+// the login which also hashes the users plaintext password and compares the hash to the database
+app.get('/Login2', function(request, response) {
+  var Username = request.body.Username;
+  con.query('SELECT * FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
+  {
+    if (err) throw err;
+    console.log(result[0])
+    return response.send(result[0]);
+    
+     
+
+  });
+});
+
+    
+//function to verify the jwt token 
     function verify(token){
       var verifiedJwt
       try {
@@ -97,20 +99,19 @@ app.post('/Login', function(request, response) {
         return  res.status(400).send('invalid token')
       }
       return verifiedJwt.Username
-    };
+};
 
 	
     
-function GetID(Username){
+function GetID2(Username){
   var result
   con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
   {
     if (err) throw err;
     
     console.log("UserID2:"+parseInt(result[0].UserID));
-    test = (result[0].UserID);
 
-    return (result[0].UserID);
+    return (result[0]);
     
      
 

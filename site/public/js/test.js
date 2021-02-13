@@ -92,3 +92,61 @@ $.ajax({
     }       
 });
 }
+
+
+// the login which also hashes the users plaintext password and compares the hash to the database
+app.post('/Login', function(request, response) {
+	var Username = request.body.Username;
+  var User_Password = request.body.User_Password;
+  //bcrypt.compare(InputPassword, hash, function(err, res) {
+    bcrypt.hash(User_Password, saltRounds, (err, hash) => {
+      if (Username && User_Password) {
+        con.query('SELECT * FROM Users WHERE Username = \''+Username+'\'  AND User_Password = \''+hash+'\'', function(err, res, fields) {
+          
+          
+          if (res.length > 0) {
+            request.session.loggedin = true;
+            request.session.username = Username;
+            const token = jwt.sign({
+            Username}, jwtkey,{
+            algorithm: "HS256", 
+            expiresIn: jwtexpiry
+          });
+            console.log(token)
+            console.log(verify(token))
+            var test = '';
+            GetID(Username, function(result){
+              test = result;
+            });
+            console.log(test);
+            response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "token": token}))
+          } else {
+            response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
+          }			
+          response.end();
+        });
+      } else {
+        response.send(JSON.stringify({"message": "Please enter Username and Password!", "loggedin": "false"}));
+        response.end();
+      }
+    });
+});
+
+
+// the login which also hashes the users plaintext password and compares the hash to the database
+app.post('/Login2', function(request, response) {
+    var Username = request.body.Username;
+    var test = ""
+    con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
+    {
+      if (err) throw err;
+      console.log("UserID2:"+parseInt(result[0].UserID));
+  
+      test = (result[0].UserID);
+      
+       
+  
+    });
+    response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "ID": test}))
+  
+  });
