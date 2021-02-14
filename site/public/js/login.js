@@ -62,20 +62,22 @@ $(document).ready(function(){
         
         $.ajax({
             type: "GET",
-            url: "http://localhost:3000/Login2",
+            url: "http://localhost:3000/Login2/" + Username ,
             dataType: 'json', 
             crossDomain : true,
             data: {
-                "Username": Username,
             },
             success: function (res) {
                 console.log("it worked");
-                console.log(res.UserID);
+                console.log(res);
+
                 setCookie("UserID", res.UserID, 2);
+                window.location.href = "http://localhost:8000/profile.html"
             },
             error: function (res, err) {
                 console.log("it did not work");
                 console.log(res.UserID);
+                console.log(err)
             },
         });
 

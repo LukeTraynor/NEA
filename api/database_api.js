@@ -75,9 +75,9 @@ app.post('/Login', function(request, response) {
 });
 
 // the login which also hashes the users plaintext password and compares the hash to the database
-app.get('/Login2', function(request, response) {
+app.get('/Login2/:Username', function(request, response) {
   var Username = request.body.Username;
-  con.query('SELECT * FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
+  con.query('SELECT * FROM `Users` WHERE Username = \''+request.params.Username+'\'', function(err, result, fields) 
   {
     if (err) throw err;
     console.log(result[0])
