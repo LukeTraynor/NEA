@@ -1,9 +1,11 @@
+//creating a function to be used to disable and enable the text boxes without reusing code
 function toggle_readonly(state){
     document.getElementById("event_name").disabled = state;
     document.getElementById("date_of_event").disabled = state;
     document.getElementById("bio").disabled = state;
 }
 
+//this puts the database information into the page 
 $(document).ready(function() {
     $('#save_close_button').hide();
  });
@@ -26,7 +28,7 @@ $(document).ready(function() {
         },
     });
 
-
+// when 
 $(document).ready(function(){
     // once login is set up this will be passed dynamically
         var EventID = 1;
@@ -65,6 +67,7 @@ $(document).ready(function(){
         });
 });
 
+// when the log out button is clicked the cookie is set to be expired therefore deleting the cookie
 $(document).ready(function(){
     $("#log_out").click(function(){
         document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -73,6 +76,7 @@ $(document).ready(function(){
     });
 });
 
+//when the edit button is clicked the save and close buttons appear while the edit button disapears vice verser when clicking the close button
 $(document).ready(function(){
     $("#edit_button").click(function(){
         console.log("hide");

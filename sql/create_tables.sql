@@ -21,6 +21,7 @@ LastName VARCHAR(30),
 Email VARCHAR(50),
 Bio VARCHAR(50),
 ImgLoc VARCHAR(50),
+Plaintext VARCHAR(150),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -58,7 +59,7 @@ PRIMARY KEY (EventID, GroupID)
 
 -- create user
 
-INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `created_at`) VALUES ('Luke', 'pass', 'luke', 'traynor', NULL, 'words words words', CURRENT_TIMESTAMP);
+INSERT INTO `Users` (`Username`, `User_Password`, `FirstName`, `LastName`, `email`, `bio`, `Plaintext`, `created_at`) VALUES ('Luke', 'pass', 'luke', 'traynor', NULL, 'words words words', 'pass', CURRENT_TIMESTAMP);
 
 -- getting user
 

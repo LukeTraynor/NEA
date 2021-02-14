@@ -1,4 +1,4 @@
-
+//hides the  save+close and the upload pic button
  $(document).ready(function() {
     $('#save_close_button').hide();
     $('#upload_pic').hide();
@@ -16,6 +16,7 @@
     });
 });
 
+//ajax call to put the groups data into the page
 var groupid = 1;
 $.ajax({
     type: "GET",
@@ -83,6 +84,7 @@ $(document).ready(function(){
         });
 });
 
+// when the log out button is clicked the cookie is set to be expired therefore deleting the cookie
 $(document).ready(function(){
     $("#log_out").click(function(){
         document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -91,6 +93,7 @@ $(document).ready(function(){
     });
 });
 
+//when the edit button is clicked the save and close buttons appear while the edit button disapears vice verser when clicking the close button
  $(document).ready(function(){
     $("#edit_button").click(function(){
         console.log("hide");

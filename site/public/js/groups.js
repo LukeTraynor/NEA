@@ -9,3 +9,24 @@ $(document).ready(function(){
         console.log("log out button works")
     });
 });
+
+$(document).ready(function(){
+    $("#create_group_button").click(function(){
+    
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/NewGroup",
+            data: {
+            },
+            crossDomain : true,
+            success: function (res) {
+                console.log("it worked");
+                window.location.href = "http://localhost:8000/Group.html"
+         
+            },
+            error: function (res, err) {
+                console.log("it did not work");
+            },
+        });
+    });
+});
