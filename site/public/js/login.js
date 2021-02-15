@@ -69,14 +69,18 @@ $(document).ready(function(){
             },
             success: function (res) {
                 console.log("it worked");
-                console.log(res);
-
-                setCookie("UserID", res.UserID, 2);
-                window.location.href = "http://localhost:8000/profile.html"
+                if (res.loggedin == "false") {
+                    //send message failed login
+                    console.log("fail")
+                  } else {
+                    console.log("success")
+                    setCookie("UserID", res.UserID, 2);
+                    window.location.href = "http://localhost:8000/profile.html"
+                  }
             },
             error: function (res, err) {
                 console.log("it did not work");
-                console.log(res.UserID);
+                console.log(res);
                 console.log(err)
             },
         });

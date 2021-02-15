@@ -81,7 +81,16 @@ app.get('/Login2/:Username', function(request, response) {
   {
     if (err) throw err;
     console.log(result[0])
-    return response.send(result[0]);
+    if (result.length > 0) {
+      return response.send(result[0]);
+      console.log(result[0])
+    
+      response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "result": result}))
+      return response.send(result);
+    } else {
+      response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
+    }	
+    
     
      
 
