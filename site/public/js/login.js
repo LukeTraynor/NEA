@@ -1,3 +1,8 @@
+$(document).ready(function() {
+    $('#registered').hide();
+    $('#incorrect').hide();
+ });
+
 $(document).ready(function(){
     $("#register_button").click(function(){
         var Username = document.getElementById('inputEmail').value
@@ -14,6 +19,8 @@ $(document).ready(function(){
             crossDomain : true,
             success: function (res) {
                 console.log("it worked");
+                $('#registered').show();
+
          
             },
             error: function (res, err) {
@@ -72,16 +79,22 @@ $(document).ready(function(){
                 if (res.loggedin == "false") {
                     //send message failed login
                     console.log("fail")
+                    $('#registered').hide();
+                    $('#incorrect').show();
                   } else {
                     console.log("success")
                     setCookie("UserID", res.UserID, 2);
+                    $('#registered').hide();
+                    $('#incorrect').hide();
                     window.location.href = "http://localhost:8000/profile.html"
                   }
             },
             error: function (res, err) {
                 console.log("it did not work");
                 console.log(res);
-                console.log(err)
+                console.log(err);
+                
+
             },
         });
 
