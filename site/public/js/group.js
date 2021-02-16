@@ -1,6 +1,6 @@
 //hides the  save+close and the upload pic button
  $(document).ready(function() {
-    $('#save_close_button').hide();
+    $('#save_close_delete_button').hide();
     $('#upload_pic').hide();
  });
 
@@ -33,12 +33,6 @@
     document.getElementById("bio").disabled = state;
  }
  
- //this will be updated to save information to DB
- $(document).ready(function(){
-    $("#save_button").click(function(){
-        console.log("this will save information");
-    });
-});
 
 //ajax call to put the groups data into the page
 var groupid = getCookie("GroupID");
@@ -108,6 +102,28 @@ $(document).ready(function(){
         });
 });
 
+$(document).ready(function(){
+    // once login is set up this will be passed dynamically
+        var GroupID = getCookie("GroupID");;
+    
+        $("#delete_button").click(function(){
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/DeleteGroup/"+GroupID,
+                dataType: 'json', 
+                crossDomain : true,
+                success: function (res) {
+                    console.log("it worked");
+                
+                },
+                error: function (res, err) {
+                    console.log("it did not work");
+                },
+            });
+            window.location.href = "http://localhost:8000/login.html"
+    });
+});          
+
 // when the log out button is clicked the cookie is set to be expired therefore deleting the cookie
 $(document).ready(function(){
     $("#log_out").click(function(){
@@ -122,13 +138,13 @@ $(document).ready(function(){
     $("#edit_button").click(function(){
         console.log("hide");
       $("#edit_button").hide();
-      $("#save_close_button").show();
+      $("#save_close_delete_button").show();
       $("#upload_pic").show();
       toggle_readonly(false);
     });
     $("#close_button").click(function(){
         $("#edit_button").show();
-        $("#save_close_button").hide();
+        $("#save_close_delete_button").hide();
         $("#upload_pic").hide();
         toggle_readonly(true);
       });

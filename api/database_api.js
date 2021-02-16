@@ -170,6 +170,7 @@ app.post('/Register', function(request, response, next) {
     });
 });
 
+//getting the newest group mades data
 app.get('/NewestGroup', function(request, response, next) {
     con.query('SELECT * FROM `Groups` ORDER BY created_at DESC limit 1', function(err, result, fields) 
     {
@@ -182,6 +183,7 @@ app.get('/NewestGroup', function(request, response, next) {
         
 });
 
+//creating a new group
 app.post('/NewGroup', function(request, response, next) {
   con.query('INSERT INTO `Groups` ( `GroupName`, `bio`, `ImgLoc`, `created_at`) VALUES ( "placeholder", NULL, NULL, CURRENT_TIMESTAMP);', function(err, result, fields) 
   {
@@ -195,6 +197,31 @@ app.post('/NewGroup', function(request, response, next) {
       
 });
 
+//deleting a group
+app.post('/DeleteGroup/:GroupID', function(request, response, next) {
+  con.query('DELETE FROM `Groups` WHERE GroupID =' + request.params.GroupID, function(err, result, fields) 
+  {
+    console.log(err)
+    if (err) throw err;
+        
+    
+  });
+  console.log("error!!!!!!!!!!!");
+      
+});
+
+//deleting a User
+app.post('/DeleteUser/:UserID', function(request, response, next) {
+  con.query('DELETE FROM `Users` WHERE UserID =' + request.params.UserID, function(err, result, fields) 
+  {
+    console.log(err)
+    if (err) throw err;
+        
+    
+  });
+  console.log("error!!!!!!!!!!!");
+      
+});
 
 
 //UPDATING USER INFORMATION
@@ -232,7 +259,7 @@ app.get('/AllGroups', function(request, response, next) {
   con.query('SELECT * FROM `Groups`', function(err, result, fields) 
   {
     if (err) throw err;
-    return response.send(result[0]);
+    return response.send(result);
   });
 });
 

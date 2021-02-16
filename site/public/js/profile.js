@@ -1,6 +1,6 @@
 
  $(document).ready(function() {
-    $('#save_close_button').hide();
+    $('#save_close_delete_button').hide();
     $('#upload_pic').hide();
  });
 
@@ -134,27 +134,44 @@ $(document).ready(function(){
     });
 });
 
+//Delete User Ajax call
+$(document).ready(function(){
+    // once login is set up this will be passed dynamically
+        var UserID = getCookie("UserID");;
+    
+        $("#delete_button").click(function(){
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/DeleteUser/"+UserID,
+                dataType: 'json', 
+                crossDomain : true,
+                success: function (res) {
+                    console.log("it worked");
+                    //delete the cookie then go to the login page
+                    document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                    //window.location.href = "http://localhost:8000/login.html"
+                },
+                error: function (res, err) {
+                    console.log("it did not work");
+                },
+            });
+            window.location.href = "http://localhost:8000/login.html"
 
-// $(document).ready(function(){
-//     $("#log_out").click(function(){
-//         console.log("testing")
-//         document.cookie = "Username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-//         console.log("testing")
-//     });
-// });
+    });
+}); 
 
 // hiding and showing of edit, save and close buttons.
  $(document).ready(function(){
     $("#edit_button").click(function(){
         console.log("hide");
       $("#edit_button").hide();
-      $("#save_close_button").show();
+      $("#save_close_delete_button").show();
       $("#upload_pic").show();
       toggle_readonly(false);
     });
     $("#close_button").click(function(){
         $("#edit_button").show();
-        $("#save_close_button").hide();
+        $("#save_close_delete_button").hide();
         $("#upload_pic").hide();
         toggle_readonly(true);
       });
