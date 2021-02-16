@@ -77,16 +77,21 @@ $(document).ready(function(){
             success: function (res) {
                 console.log("it worked");
                 if (res.loggedin == "false") {
+                    
                     //send message failed login
                     console.log("fail")
                     $('#registered').hide();
                     $('#incorrect').show();
                   } else {
-                    console.log("success")
-                    setCookie("UserID", res.UserID, 2);
-                    $('#registered').hide();
-                    $('#incorrect').hide();
-                    window.location.href = "http://localhost:8000/profile.html"
+                    if (res.Plaintext == User_Password) {  
+                        console.log("success")
+                        setCookie("UserID", res.UserID, 2);
+                        $('#registered').hide();
+                        $('#incorrect').hide();
+                        window.location.href = "http://localhost:8000/profile.html"
+                    } else{
+                        $('#incorrect').show();
+                    }
                   }
             },
             error: function (res, err) {

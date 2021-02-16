@@ -77,6 +77,7 @@ app.post('/Login', function(request, response) {
 // the login which also hashes the users plaintext password and compares the hash to the database
 app.get('/Login2/:Username', function(request, response) {
   var Username = request.body.Username;
+  var User_Password = request.body.User_Password;
   con.query('SELECT * FROM `Users` WHERE Username = \''+request.params.Username+'\'', function(err, result, fields) 
   {
     if (err) throw err;
@@ -91,9 +92,6 @@ app.get('/Login2/:Username', function(request, response) {
       response.send(JSON.stringify({"message": "Incorrect Username and/or Password!", "loggedin": "false"}));
     }	
     
-    
-     
-
   });
 });
 
