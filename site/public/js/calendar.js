@@ -1,3 +1,20 @@
+//log out function
+$(document).ready(function(){
+  $("#log_out").click(function(){
+      document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      window.location.href = "http://localhost:8000/login.html"
+      console.log("log out button works")
+  });
+});
+
+//Checks to make sure the user has a cookie and logs them out if they dont
+$(document).ready(function() {
+  if (getCookie("UserID") < 1){
+      window.location.href = "http://localhost:8000/login.html"
+  }
+
+});
+
 var CURRENT_DATE = new Date();
 var d = new Date();
 
@@ -15,14 +32,8 @@ function getCalendarStart(dayOfWeek, currentDate) {
   return Math.abs(startOffset);
 }
 
-//log out function
-$(document).ready(function(){
-  $("#log_out").click(function(){
-      document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      window.location.href = "http://localhost:8000/login.html"
-      console.log("log out button works")
-  });
-});
+
+
 
 // Creating the Calendar
 function CreateCalendar(startDay, totalDays, currentDate) {

@@ -4,6 +4,14 @@
     $('#upload_pic').hide();
  });
 
+ //Checks to make sure the user has a cookie and logs them out if they dont
+ $(document).ready(function() {
+    if (getCookie("UserID") < 1){
+        window.location.href = "http://localhost:8000/login.html"
+    }
+
+ });
+
  function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);

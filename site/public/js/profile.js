@@ -10,10 +10,18 @@
     document.getElementById("last_name").disabled = state;
     document.getElementById("bio").disabled = state;
  }
+
+ //Checks to make sure the user has a cookie and logs them out if they dont
+ $(document).ready(function() {
+    if (getCookie("UserID") < 1){
+        window.location.href = "http://localhost:8000/login.html"
+    }
+
+ });
  
 
  $(document).ready(function(){
-// once login is set up this will be passed dynamically
+
     var userid = getCookie("UserID");
     console.log(userid)
 

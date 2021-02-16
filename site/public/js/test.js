@@ -52,6 +52,13 @@ $(document).ready(function(){
     });
 });
 
+// $(document).ready(function() {
+//     if (getCookie("UserID") < 1){
+//         window.location.href = "http://localhost:8000/login.html"
+//     }
+
+//  });
+
 
 // // the login which also hashes the users plaintext password and compares the hash to the database
 // app.post('/Login', function(request, response) {
@@ -114,13 +121,13 @@ $(document).ready(function(){
     
         $.ajax({
             type: "GET",
-            url: "http://localhost:3000/Groups",
+            url: "http://localhost:3000/AllGroups",
             data: {
             },
             crossDomain : true,
             success: function (res) {
                 console.log("it worked");
-         
+                console.log(res)
             },
             error: function (res, err) {
                 console.log("it did not work");

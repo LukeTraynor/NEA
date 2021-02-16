@@ -5,6 +5,15 @@ function toggle_readonly(state){
     document.getElementById("bio").disabled = state;
 }
 
+//Checks to make sure the user has a cookie and logs them out if they dont
+$(document).ready(function() {
+    if (getCookie("UserID") < 1){
+        window.location.href = "http://localhost:8000/login.html"
+    }
+
+ });
+
+
 //this puts the database information into the page 
 $(document).ready(function() {
     $('#save_close_button').hide();

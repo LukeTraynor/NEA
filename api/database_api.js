@@ -228,7 +228,7 @@ app.get('/Users/Groups/:UserID', function(request, response, next) {
 });
 
 //GET all groups
-app.get('/Groups', function(request, response, next) {
+app.get('/AllGroups', function(request, response, next) {
   con.query('SELECT * FROM `Groups`', function(err, result, fields) 
   {
     if (err) throw err;
