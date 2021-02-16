@@ -27,24 +27,45 @@
 
 
 
-<div class="data-tables">
-    <table id="dataTable" class="text-center" >
-        <thead class="bg-light text-capitalize">
-            <tr>
-                <th hidden>User ID</th>
-                <th>Control No.</th>
-                <th>Account Name</th>
-                <th>Date Inspection</th>
-                <th>Date of Report</th>
-                <th>Actual Use</th>
-                <th>Landmark</th>
-                <th>Registered Owner</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-        </tbody>
-    </table>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML dynamic table using JavaScript</title>
+</head>
+<body onload="load()">
+<div id="myform">
+<table>
+    <tr>
+        <td>Group ID:</td>
+        <td><input type="text" id="name"></td>
+    </tr>
+    <tr>
+        <td>GroupName:</td>
+        <td><input type="text" id="age">
+        <input type="button" id="add" value="Add" onclick="Javascript:addRow()"></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</div>
+<div id="mydata">
+<b>Current data in the system ...</b>
+<table id="myTableData"  border="1" cellpadding="2">
+    <tr>
+        <td>&nbsp;</td>
+        <td><b>GroupID</b></td>
+        <td><b>GroupName</b></td>
+        <td><b>Bio</b></td>
+    </tr>
+</table>
+&nbsp;
+ 
+</div>
+<div id="myDynamicTable">
+<input type="button" id="create" value="Click here" onclick="Javascript:addTable()">
+to create a Table and add some data using JavaScript
 </div>
 </body>
 </html>
