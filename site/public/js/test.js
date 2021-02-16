@@ -29,10 +29,18 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
+    $("#create_cookie2").click(function(){
+        setCookie("GroupID", 3, 2);
+        console.log(getCookie("GroupID"))
+    });
+});
+
+
+$(document).ready(function(){
     $("#see_cookie").click(function(){
         console.log(getCookie("UserID"))
         console.log("working")
-        var x = getCookie("UserID")
+        var x = getCookie()
         console.log(x)
     });
 });
@@ -43,6 +51,13 @@ $(document).ready(function(){
         document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     });
 });
+
+// $(document).ready(function() {
+//     if (getCookie("UserID") < 1){
+//         window.location.href = "http://localhost:8000/login.html"
+//     }
+
+//  });
 
 
 // // the login which also hashes the users plaintext password and compares the hash to the database
@@ -102,58 +117,20 @@ $(document).ready(function(){
   
 //   });
 
-  function addRow() {
-          
-    var GroupID = document.getElementById("groupid");
-    var GroupName = document.getElementById("groupname");
-    var Bio = document.getElementById("bio");
-    var table = document.getElementById("myTableData");
- 
-    var rowCount = table.rows.length;
-    var row = table.insertRow(rowCount);
- 
-    row.insertCell(0).innerHTML= '<input type="button" value = "Delete" onClick="Javacsript:deleteRow(this)">';
-    row.insertCell(1).innerHTML= GroupID.value;
-    row.insertCell(2).innerHTML= GroupName.value;
-    row.insertCell(2).innerHTML= Bio.value;
- 
-}
- 
-function deleteRow(obj) {
-      
-    var index = obj.parentNode.parentNode.rowIndex;
-    var table = document.getElementById("myTableData");
-    table.deleteRow(index);
+$(document).ready(function(){
     
-}
- 
-function addTable() {
-      
-    var myTableDiv = document.getElementById("myDynamicTable");
-      
-    var table = document.createElement('TABLE');
-    table.border='1';
-    
-    var tableBody = document.createElement('TBODY');
-    table.appendChild(tableBody);
-      
-    for (var i=0; i<3; i++){
-       var tr = document.createElement('TR');
-       tableBody.appendChild(tr);
-       
-       for (var j=0; j<4; j++){
-           var td = document.createElement('TD');
-           td.width='75';
-           td.appendChild(document.createTextNode("Cell " + i + "," + j));
-           tr.appendChild(td);
-       }
-    }
-    myTableDiv.appendChild(table);
-    
-}
- 
-function load() {
-    
-    console.log("Page load finished");
- 
-}
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/AllGroups",
+            data: {
+            },
+            crossDomain : true,
+            success: function (res) {
+                console.log("it worked");
+                console.log(res)
+            },
+            error: function (res, err) {
+                console.log("it did not work");
+            },
+        });
+});

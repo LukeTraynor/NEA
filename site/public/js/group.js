@@ -1,23 +1,41 @@
 //hides the  save+close and the upload pic button
  $(document).ready(function() {
-    $('#save_close_button').hide();
+    $('#save_close_delete_button').hide();
     $('#upload_pic').hide();
  });
+
+ //Checks to make sure the user has a cookie and logs them out if they dont
+ $(document).ready(function() {
+    if (getCookie("UserID") < 1){
+        window.location.href = "http://localhost:8000/login.html"
+    }
+
+ });
+
+ function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 
  function toggle_readonly(state){
     document.getElementById("group_name").disabled = state;
     document.getElementById("bio").disabled = state;
  }
  
- //this will be updated to save information to DB
- $(document).ready(function(){
-    $("#save_button").click(function(){
-        console.log("this will save information");
-    });
-});
 
 //ajax call to put the groups data into the page
-var groupid = 1;
+var groupid = getCookie("GroupID");
 $.ajax({
     type: "GET",
     url: "http://localhost:3000/Groups/"+groupid,
@@ -36,7 +54,7 @@ $.ajax({
 
 $(document).ready(function(){
     // once login is set up this will be passed dynamically
-        var GroupID = 1;
+        var GroupID = getCookie("GroupID");;
     
         $("#save_button").click(function(){
     
@@ -84,6 +102,28 @@ $(document).ready(function(){
         });
 });
 
+$(document).ready(function(){
+    // once login is set up this will be passed dynamically
+        var GroupID = getCookie("GroupID");;
+    
+        $("#delete_button").click(function(){
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/DeleteGroup/"+GroupID,
+                dataType: 'json', 
+                crossDomain : true,
+                success: function (res) {
+                    console.log("it worked");
+                
+                },
+                error: function (res, err) {
+                    console.log("it did not work");
+                },
+            });
+            window.location.href = "http://localhost:8000/login.html"
+    });
+});          
+
 // when the log out button is clicked the cookie is set to be expired therefore deleting the cookie
 $(document).ready(function(){
     $("#log_out").click(function(){
@@ -98,13 +138,13 @@ $(document).ready(function(){
     $("#edit_button").click(function(){
         console.log("hide");
       $("#edit_button").hide();
-      $("#save_close_button").show();
+      $("#save_close_delete_button").show();
       $("#upload_pic").show();
       toggle_readonly(false);
     });
     $("#close_button").click(function(){
         $("#edit_button").show();
-        $("#save_close_button").hide();
+        $("#save_close_delete_button").hide();
         $("#upload_pic").hide();
         toggle_readonly(true);
       });
