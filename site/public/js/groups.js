@@ -79,3 +79,25 @@ $(document).ready(function(){
         
     });
 });
+$(document).ready(function(){
+    
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/AllGroups",
+        data: {
+        },
+        crossDomain : true,
+        success: function (res) {
+            console.log("it worked");
+            console.log(res[0])
+            var trHTML = '';
+    $.each(res, function (i, Group) {
+        trHTML += '<tr><td>' + Group.GroupID + '</td><td>' + Group.GroupName + '</td><td>' + Group.Bio + '</td></tr>';
+    });
+    $('#groups_table').append(trHTML);
+        },
+        error: function (res, err) {
+            console.log("it did not work");
+        },
+    });
+});

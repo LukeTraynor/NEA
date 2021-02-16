@@ -127,7 +127,12 @@ $(document).ready(function(){
             crossDomain : true,
             success: function (res) {
                 console.log("it worked");
-                console.log(res)
+                console.log(res[0])
+                var trHTML = '';
+        $.each(res, function (i, Group) {
+            trHTML += '<tr><td onClick= "window.location.href = "http://localhost:8000/profile.html"">' + Group.GroupID + '</td><td>' + Group.GroupName + '</td><td>' + Group.Bio + '</td></tr>';
+        });
+        $('#groups_table').append(trHTML);
             },
             error: function (res, err) {
                 console.log("it did not work");
