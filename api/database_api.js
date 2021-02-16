@@ -143,40 +143,6 @@ function GetID(Username){
         });
 }
 
-// async function operation() {
-//   return new Promise(function(resolve, reject) {
-//     con.query('SELECT UserID FROM `Users` WHERE Username = "Luke"', function(err, result, fields) 
-//     {
-//       if (err) throw err;
-//       console.log(result[0].UserID)
-//       var a = 5
-//       // may be a heavy db call or http request?
-//       resolve(a); // successfully fill promise
-//   });
-// })
-// }
-
-// async function app() {
-//   var a = await operation() // a is 5
-// }
-
-// async function operation() {
-//   return new Promise(function(resolve, reject) {
-//       var a = 0;
-//       var b = 1;
-//       a = a + b;
-//       a = 5;
-//       console.log(a)
-//       // may be a heavy db call or http request?
-//       resolve(a) // successfully fill promise
-//   })
-// }
-
-// async function app() {
-//   var a = await operation() // a is 5
-// }
-
-
 
 
 //register api that adds the users username and password into the database - also hashes the password and saves the hash
@@ -204,17 +170,29 @@ app.post('/Register', function(request, response, next) {
     });
 });
 
-app.post('/NewGroup', function(request, response, next) {
-    con.query('INSERT INTO `Groups` ( `GroupName`, `bio`, `ImgLoc`, `created_at`) VALUES ( "placeholder", NULL, NULL, CURRENT_TIMESTAMP);', function(err, result, fields) 
+app.get('/NewestGroup', function(request, response, next) {
+    con.query('SELECT * FROM `Groups` ORDER BY created_at DESC limit 1', function(err, result, fields) 
     {
       console.log(err)
       if (err) throw err;
       return response.send(result[0]);
-          
       
     });
     console.log("error!!!!!!!!!!!");
         
+});
+
+app.post('/NewGroup', function(request, response, next) {
+  con.query('INSERT INTO `Groups` ( `GroupName`, `bio`, `ImgLoc`, `created_at`) VALUES ( "placeholder", NULL, NULL, CURRENT_TIMESTAMP);', function(err, result, fields) 
+  {
+    console.log(err)
+    if (err) throw err;
+    return response.send(result[0]);
+        
+    
+  });
+  console.log("error!!!!!!!!!!!");
+      
 });
 
 
@@ -243,6 +221,15 @@ var Bio = request.body.Bio;
 //GET all groups a users is in
 app.get('/Users/Groups/:UserID', function(request, response, next) {
   con.query('SELECT Groups.GroupName, Groups.GroupID, Groups.Bio, Groups.ImgLoc FROM `Users`, `Groups` WHERE UserID = ' + request.params.UserID, function(err, result, fields) 
+  {
+    if (err) throw err;
+    return response.send(result[0]);
+  });
+});
+
+//GET all groups
+app.get('/Groups', function(request, response, next) {
+  con.query('SELECT * FROM `Groups`', function(err, result, fields) 
   {
     if (err) throw err;
     return response.send(result[0]);

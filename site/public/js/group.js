@@ -4,6 +4,22 @@
     $('#upload_pic').hide();
  });
 
+ function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
  function toggle_readonly(state){
     document.getElementById("group_name").disabled = state;
     document.getElementById("bio").disabled = state;
@@ -17,7 +33,7 @@
 });
 
 //ajax call to put the groups data into the page
-var groupid = 1;
+var groupid = getCookie("GroupID");
 $.ajax({
     type: "GET",
     url: "http://localhost:3000/Groups/"+groupid,
@@ -36,7 +52,7 @@ $.ajax({
 
 $(document).ready(function(){
     // once login is set up this will be passed dynamically
-        var GroupID = 1;
+        var GroupID = getCookie("GroupID");;
     
         $("#save_button").click(function(){
     
