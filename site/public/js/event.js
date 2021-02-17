@@ -1,3 +1,20 @@
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+
 //creating a function to be used to disable and enable the text boxes without reusing code
 function toggle_readonly(state){
     document.getElementById("event_name").disabled = state;
@@ -19,7 +36,7 @@ $(document).ready(function() {
     $('#save_close_button').hide();
  });
 
- var eventid = 1;
+ var eventid = getCookie("EventID");
     $.ajax({
         type: "GET",
         url: "http://localhost:3000/Events/"+eventid,
@@ -40,7 +57,7 @@ $(document).ready(function() {
 // when 
 $(document).ready(function(){
     // once login is set up this will be passed dynamically
-        var EventID = 1;
+        var EventID = getCookie("EventID");
         
         $("#save_button").click(function(){
         

@@ -127,8 +127,14 @@ $(document).ready(function(){
                 $('td').remove();
     $.each(res, function (i, Group) {
         trHTML += '<tr><td>' + Group.GroupID + '</td><td>' + Group.GroupName + '</td><td>' + Group.Bio + '</td></tr>';
+        if (res.length == 1){
+            setCookie("GroupID", Group.GroupID, 2)
+            window.location.href = "http://localhost:8000/Group.html"
+    }
     });
     $('#groups_table').append(trHTML);
+    
+    
             },
             error: function (res, err) {
                 console.log("it did not work");

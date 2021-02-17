@@ -263,7 +263,7 @@ app.get('/AllGroups', function(request, response, next) {
   });
 });
 
-//GET all groups
+//GET all searched groups
 app.get('/SearchGroups/:Search', function(request, response, next) {
   var Search = request.body.Search;
   con.query('SELECT * FROM `Groups` WHERE GroupName LIKE "' + request.params.Search + '%"', function(err, result, fields) 
@@ -271,6 +271,51 @@ app.get('/SearchGroups/:Search', function(request, response, next) {
     if (err) throw err;
     return response.send(result);
   });
+});
+
+//GET all events
+app.get('/AllEvents', function(request, response, next) {
+  con.query('SELECT * FROM `Events`', function(err, result, fields) 
+  {
+    if (err) throw err;
+    return response.send(result);
+  });
+});
+//GET all searched Events
+app.get('/SearchEvents/:Search', function(request, response, next) {
+  var Search = request.body.Search;
+  con.query('SELECT * FROM `Events` WHERE EventName LIKE "' + request.params.Search + '%"', function(err, result, fields) 
+  {
+    if (err) throw err;
+    return response.send(result);
+  });
+});
+
+//getting the newest event mades data
+app.get('/NewestEvent', function(request, response, next) {
+  con.query('SELECT * FROM `Events` ORDER BY created_at DESC limit 1', function(err, result, fields) 
+  {
+    console.log(err)
+    if (err) throw err;
+    return response.send(result[0]);
+    
+  });
+  console.log("error!!!!!!!!!!!");
+      
+});
+
+//creating a new event
+app.post('/NewEvent', function(request, response, next) {
+con.query('INSERT INTO `Events` ( `EventName`, `TimeOfEvent`, `DateOfEvent`, `LocationOfEvent`, `Bio`, `created_at`) VALUES ( "placeholder", NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP);', function(err, result, fields) 
+{
+  console.log(err)
+  if (err) throw err;
+  return response.send(result[0]);
+      
+  
+});
+console.log("error!!!!!!!!!!!");
+    
 });
 
 //GET all users in a group
