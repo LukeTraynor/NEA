@@ -17,6 +17,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Custom styles for this template -->
     <link href="css/Events.css" rel="stylesheet">
+    <script type="text/javascript" src="js/events.js"></script>
 </head>
 
 <body>
@@ -56,62 +57,28 @@
                 <div class="col">
                     <h2 class="">Events</h2>
                 </div>
+                <div class="col-3">
+                    <input class="form-control" type="text" id = "search_box" placeholder="Search" aria-label="Search">
+                </div>
+                <div class="col-3">
+                    <button type="button" id="search_button" class="btn btn-dark">Search</button>
+                   
+                        <button type="button" id="reset_button" class="btn btn-dark">Reset</button>
+                    
+                </div>
                 <div class="col text-right">
-                    <button type="button" id="add_button" class="btn btn-dark">+</button>
+                    <button type="button" id="add_button" class="btn btn-dark">Add Event</button>
                 </div>
             </div>
-            <div class="row box-shadow">
-                <div class="col">
-                    <h3 class="">Upcoming Events</h3>
-                </div>
-                <div class="col text-right">
-                    <button type="button" id="filter_button" class="btn btn-dark">Filter</button>
-                </div>
-            </div>
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <table id="events_table" border='1'>
+                <tr>
+                    <th>EventID</th>
+                    <th>Event Name</th>
+                    <th>Date Of Event</th>
+                    <th>Event Bio</th>
+                </tr>
+            </table> 
                 
-                <div class="row">
-        
-                    <div class="col" id="group_bio">
-                        <form>
-                            <h5 class="text-center">Event Name</h5>
-                            <p class="mb-1">Lorem Ipsum is simply dummy text of the printing and 
-                                typesetting industry. Lorem Ipsum has been the industry's 
-                                standard dummy text ever since the 1500s, when an unknown 
-                                printer took a galley of type and scrambled it to make a 
-                                type specimen book. It has survived not only five centuries, 
-                                but also the leap into electronic typesetting, 
-                                remaining essentially unchanged.</p>    
-                    </div>
-
-                    <div class="col-md-auto">
-                        <button type="button" id="event_page_button" class="btn btn-dark">Events Page</button>
-                    </div>
-                </div>
-
-                    </a>
-
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="row">
-                            <div class="col" id="group_bio">
-                                <form>
-                                    <h5 class="text-center">Event Name</h5>
-                                    <p class="mb-1">Lorem Ipsum is simply dummy text of the printing and 
-                                        typesetting industry. Lorem Ipsum has been the industry's 
-                                        standard dummy text ever since the 1500s, when an unknown 
-                                        printer took a galley of type and scrambled it to make a 
-                                        type specimen book. It has survived not only five centuries, 
-                                        but also the leap into electronic typesetting, 
-                                        remaining essentially unchanged. </p>    
-                            </div>
-        
-                            <div class="col-md-auto">
-                                <button type="button" id="event_page_button" class="btn btn-dark">Events Page</button>
-                            </div>
-                        </div>
-                </a>
-                
-            </div>
+            
         </div>
     </div>

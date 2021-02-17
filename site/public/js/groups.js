@@ -79,3 +79,66 @@ $(document).ready(function(){
         
     });
 });
+$(document).ready(function(){
+    
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/AllGroups",
+        data: {
+        },
+        crossDomain : true,
+        success: function (res) {
+            console.log("it worked");
+            console.log(res[0])
+            var trHTML = '';
+    $.each(res, function (i, Group) {
+        trHTML += '<tr><td>' + Group.GroupID + '</td><td>' + Group.GroupName + '</td><td>' + Group.Bio + '</td></tr>';
+    });
+    $('#groups_table').append(trHTML);
+        },
+        error: function (res, err) {
+            console.log("it did not work");
+        },
+    });
+});
+
+$(document).ready(function(){
+    $("#reset_button").click(function(){
+        location.reload();
+
+    });
+});
+
+$(document).ready(function(){
+    $("#search_button").click(function(){
+        var search = document.getElementById('search_box').value
+        console.log(search)
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/SearchGroups/" +search,
+            data: {
+                //"Search" : search,
+            },
+            crossDomain : true,
+            success: function (res) {
+                console.log("it worked");
+                console.log(res)
+                var trHTML = '';
+                $('td').remove();
+    $.each(res, function (i, Group) {
+        trHTML += '<tr><td>' + Group.GroupID + '</td><td>' + Group.GroupName + '</td><td>' + Group.Bio + '</td></tr>';
+        if (res.length == 1){
+            setCookie("GroupID", Group.GroupID, 2)
+            window.location.href = "http://localhost:8000/Group.html"
+    }
+    });
+    $('#groups_table').append(trHTML);
+    
+    
+            },
+            error: function (res, err) {
+                console.log("it did not work");
+            },
+        });
+    });
+});

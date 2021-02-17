@@ -116,6 +116,9 @@ $(document).ready(function(){
 //     response.send(JSON.stringify({"message": "You are logged in", "loggedin": "true", "ID": test}))
   
 //   });
+// for (var i = 0; i < never.length; i++) {
+//     document.getElementById("more").innerHTML += "<button>" + never[i] + "</button>";
+//   }
 
 $(document).ready(function(){
     
@@ -127,10 +130,18 @@ $(document).ready(function(){
             crossDomain : true,
             success: function (res) {
                 console.log("it worked");
-                console.log(res)
+                console.log(res[0])
+                var trHTML = '';
+        $.each(res, function (i, Group) {
+            trHTML += '<tr><td>' + Group.GroupID + '</td><td>' + Group.GroupName + '</td><td>' + Group.Bio + '</td></tr>';
+            //document.getElementById("more").innerHTML += "<button></button>";
+            var test=document.createElement("button");
+        });
+        $('#groups_table').append(trHTML);
             },
             error: function (res, err) {
                 console.log("it did not work");
             },
         });
 });
+
