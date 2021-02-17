@@ -103,6 +103,13 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
+    $("#reset_button").click(function(){
+        location.reload();
+
+    });
+});
+
+$(document).ready(function(){
     $("#search_button").click(function(){
         var search = document.getElementById('search_box').value
         console.log(search)
