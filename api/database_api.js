@@ -263,6 +263,16 @@ app.get('/AllGroups', function(request, response, next) {
   });
 });
 
+//GET all groups
+app.get('/SearchGroups/:Search', function(request, response, next) {
+  var Search = request.body.Search;
+  con.query('SELECT * FROM `Groups` WHERE GroupName LIKE "' + request.params.Search + '%"', function(err, result, fields) 
+  {
+    if (err) throw err;
+    return response.send(result);
+  });
+});
+
 //GET all users in a group
 app.get('/Groups/Users/:GroupID', function(request, response, next) {
   con.query('SELECT Users.Username, Users.Bio, Users.ImgLoc, Users.UserID FROM `Users`, `Groups` WHERE GroupID = ' + request.params.GroupID, function(err, result, fields) 

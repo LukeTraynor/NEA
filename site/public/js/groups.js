@@ -101,3 +101,31 @@ $(document).ready(function(){
         },
     });
 });
+
+$(document).ready(function(){
+    $("#search_button").click(function(){
+        var search = document.getElementById('search_box').value
+        console.log(search)
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/SearchGroups/" +search,
+            data: {
+                //"Search" : search,
+            },
+            crossDomain : true,
+            success: function (res) {
+                console.log("it worked");
+                console.log(res)
+                var trHTML = '';
+                $('td').remove();
+    $.each(res, function (i, Group) {
+        trHTML += '<tr><td>' + Group.GroupID + '</td><td>' + Group.GroupName + '</td><td>' + Group.Bio + '</td></tr>';
+    });
+    $('#groups_table').append(trHTML);
+            },
+            error: function (res, err) {
+                console.log("it did not work");
+            },
+        });
+    });
+});
