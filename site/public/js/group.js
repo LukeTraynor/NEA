@@ -103,7 +103,6 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-    // once login is set up this will be passed dynamically
         var GroupID = getCookie("GroupID");;
     
         $("#delete_button").click(function(){
@@ -122,7 +121,26 @@ $(document).ready(function(){
             });
             window.location.href = "http://localhost:8000/login.html"
     });
-});          
+});     
+
+$(document).ready(function(){
+    $("#join_button").click(function(){
+        var GroupID = getCookie("GroupID");;
+        var UserID = getCookie("UserID");
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/JoinGroup/"+UserID+'/'+GroupID,
+            dataType: 'json', 
+            crossDomain : true,
+            success: function (res) {
+
+            },
+            error: function (res, err) {
+                console.log("it did not work");
+            },
+        });
+    });
+});
 
 // when the log out button is clicked the cookie is set to be expired therefore deleting the cookie
 $(document).ready(function(){

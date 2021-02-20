@@ -197,6 +197,33 @@ app.post('/NewGroup', function(request, response, next) {
       
 });
 
+//joining a group
+app.post('/JoinGroup/:UserID/:GroupID', function(request, response, next) {
+  con.query('INSERT INTO `GroupMembers` ( `UserID`, `GroupID`) VALUES (' + request.params.UserID + ', ' + request.params.GroupID + ');', function(err, result, fields) 
+  {
+    console.log(err)
+    if (err) throw err;
+    return response.send(result[0]);
+        
+    
+  });
+  console.log("error!!!!!!!!!!!");
+      
+});
+
+//getting the users in group
+app.get('/GroupMembers/:GroupID', function(request, response, next) {
+  con.query('select UserID from GroupMembers where GroupID =' +request.params.GroupID, function(err, result, fields) 
+  {
+    console.log(err)
+    if (err) throw err;
+    return response.send(result[0]);
+    
+  });
+  console.log("error!!!!!!!!!!!");
+      
+});
+
 //deleting a group
 app.post('/DeleteGroup/:GroupID', function(request, response, next) {
   con.query('DELETE FROM `Groups` WHERE GroupID =' + request.params.GroupID, function(err, result, fields) 
