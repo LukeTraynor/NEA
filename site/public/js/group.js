@@ -113,13 +113,15 @@ $(document).ready(function(){
                 crossDomain : true,
                 success: function (res) {
                     console.log("it worked");
+                    //delete the cookie then go to the groups page
+                    document.cookie = "GroupID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                 
                 },
                 error: function (res, err) {
                     console.log("it did not work");
                 },
             });
-            window.location.href = "http://localhost:8000/login.html"
+            window.location.href = "http://localhost:8000/Groups.html"
     });
 });     
 
