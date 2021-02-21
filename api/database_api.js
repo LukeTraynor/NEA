@@ -250,6 +250,19 @@ app.post('/DeleteUser/:UserID', function(request, response, next) {
       
 });
 
+//deleting an event
+app.post('/DeleteEvent/:EventID', function(request, response, next) {
+  con.query('DELETE FROM `Events` WHERE EventID =' + request.params.EventID, function(err, result, fields) 
+  {
+    console.log(err)
+    if (err) throw err;
+        
+    
+  });
+  console.log("error!!!!!!!!!!!");
+      
+});
+
 
 //UPDATING USER INFORMATION
 app.put('/Users/:UserID', function(request, response) {

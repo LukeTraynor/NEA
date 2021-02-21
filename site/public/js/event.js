@@ -116,3 +116,29 @@ $(document).ready(function(){
         toggle_readonly(true);
       });
 });
+
+
+//Delete Event Ajax call
+$(document).ready(function(){
+        var EventID = getCookie("EventID");;
+    
+        $("#delete_button").click(function(){
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/DeleteEvent/"+EventID,
+                dataType: 'json', 
+                crossDomain : true,
+                success: function (res) {
+                    console.log("it worked");
+                    //delete the cookie then go to the events page
+                    document.cookie = "EventID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+                },
+                error: function (res, err) {
+                    console.log("it did not work");
+                },
+            });
+            window.location.href = "http://localhost:8000/Events.html"
+
+    });
+}); 
