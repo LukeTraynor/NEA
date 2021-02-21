@@ -119,7 +119,7 @@ $(document).ready(function(){
                     console.log("it did not work");
                 },
             });
-            window.location.href = "http://localhost:8000/login.html"
+            window.location.href = "http://localhost:8000/Groups.html"
     });
 });     
 
