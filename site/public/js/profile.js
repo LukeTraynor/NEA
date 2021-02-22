@@ -131,6 +131,7 @@ $(document).ready(function(){
         document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         window.location.href = "http://localhost:8000/login.html"
         console.log("log out button works")
+        console.log("cookie has been deleted")
     });
 });
 
@@ -149,6 +150,7 @@ $(document).ready(function(){
                     console.log("it worked");
                     //delete the cookie then go to the login page
                     document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                    console.log("cookie has been deleted")
                     //window.location.href = "http://localhost:8000/login.html"
                 },
                 error: function (res, err) {
