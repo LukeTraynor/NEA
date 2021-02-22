@@ -1,3 +1,4 @@
+//function to get whats stored inside the cookie
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -37,6 +38,7 @@ $(document).ready(function() {
  });
 
  var eventid = getCookie("EventID");
+ console.log(eventid)
     $.ajax({
         type: "GET",
         url: "http://localhost:3000/Events/"+eventid,
@@ -54,9 +56,8 @@ $(document).ready(function() {
         },
     });
 
-// when 
+// updates the database with the new inputted data 
 $(document).ready(function(){
-    // once login is set up this will be passed dynamically
         var EventID = getCookie("EventID");
         
         $("#save_button").click(function(){
@@ -138,6 +139,7 @@ $(document).ready(function(){
                     console.log("it did not work");
                 },
             });
+            console.log("cookie was delted")
             window.location.href = "http://localhost:8000/Events.html"
 
     });

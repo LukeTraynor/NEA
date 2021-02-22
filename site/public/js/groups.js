@@ -1,6 +1,4 @@
-// $('#myModal').on('shown.bs.modal', function () {
-//     $('#myInput').trigger('show');
-//   })
+//if the cookie for the userID doesnt exist at any time the user is redirected to the login page
 $(document).ready(function() {
     if (getCookie("UserID") < 1){
         window.location.href = "http://localhost:8000/login.html"
@@ -17,6 +15,7 @@ $(document).ready(function(){
     });
 });
 
+
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -24,6 +23,7 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
+//function to get whats stored inside the cookie
   function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -40,6 +40,7 @@ function setCookie(cname, cvalue, exdays) {
     return "";
   }
 
+//creates a new group when the create group button is pressed then redirects the user to the newest group created page
 $(document).ready(function(){
     $("#create_group_button").click(function(){
 
@@ -79,6 +80,8 @@ $(document).ready(function(){
         
     });
 });
+
+//displays all the groups in a table form
 $(document).ready(function(){
     
     $.ajax({
@@ -109,6 +112,7 @@ $(document).ready(function(){
     });
 });
 
+// displays all the groups in a table form that Group Name begin with whatever the user searched
 $(document).ready(function(){
     $("#search_button").click(function(){
         var search = document.getElementById('search_box').value
@@ -127,6 +131,7 @@ $(document).ready(function(){
                 $('td').remove();
     $.each(res, function (i, Group) {
         trHTML += '<tr><td>' + Group.GroupID + '</td><td>' + Group.GroupName + '</td><td>' + Group.Bio + '</td></tr>';
+        // if there is only one result then go to the groups page
         if (res.length == 1){
             setCookie("GroupID", Group.GroupID, 2)
             window.location.href = "http://localhost:8000/Group.html"

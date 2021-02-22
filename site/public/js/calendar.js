@@ -54,8 +54,7 @@ function CreateCalendar(startDay, totalDays, currentDate) {
     // +1 next day until Saturday (6), then reset to Sunday (0)
     currentDay = ++currentDay % 7;
 
-    // Generate new row when day is Saturday, but only if there are
-    // additional days to render
+    // Generate new row when the day is Saturday, but only if there are more days to render
     if (currentDay === 0 && (i + 1 <= totalDays)) {
       $week = getCalendarRow();
       currentRow++;
@@ -101,7 +100,7 @@ function myCalendar() {
     dateToHighlight = date;
   }
 
-  //Getting February Days Including The Leap Year
+  //Getting February days including the leasp year
   if (month === 1) {
     if ((year % 100 !== 0) && (year % 4 === 0) || (year % 400 === 0)) {
       totalDaysInMonth = 29;
@@ -112,6 +111,7 @@ function myCalendar() {
   CreateCalendar(getCalendarStart(day, date), totalDaysInMonth, dateToHighlight);
 };
 
+// going back or forward months
 function navigationHandler(dir) {
   d.setUTCMonth(d.getUTCMonth() + dir);
   clearCalendar();
@@ -119,7 +119,7 @@ function navigationHandler(dir) {
 }
 
 $(document).ready(function() {
-  // Bind Events
+  // Bind months
   $('.prev-month').click(function() {
     navigationHandler(-1);
   });

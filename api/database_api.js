@@ -125,25 +125,6 @@ function GetID2(Username){
   });
 }
 
-function GetID(Username){
-  var result
-  
-      console.log('Slow function done')
-      
-   
-      con.query('SELECT UserID FROM `Users` WHERE Username = \''+Username+'\'', function(err, result, fields) 
-      {
-        if (err) throw err;
-        setTimeout(function () {
-          console.log("UserID2:"+parseInt(result[0].UserID));
-          test = (result[0].UserID);
-          return (result[0].UserID); 
-      
-            }, 300)
-        });
-}
-
-
 
 //register api that adds the users username and password into the database - also hashes the password and saves the hash
 app.post('/Register', function(request, response, next) {
@@ -267,15 +248,11 @@ app.post('/DeleteEvent/:EventID', function(request, response, next) {
 //UPDATING USER INFORMATION
 app.put('/Users/:UserID', function(request, response) {
 
-  //var profileBody = request.body;
 var FirstName = request.body.FirstName;
 var LastName = request.body.LastName;
 var Email = request.body.Email;
 var Bio = request.body.Bio;
 
-// if(profileBody["FirstName"]!= null){
-//   FirstName = profileBody["FirstName"];
-// }
 
   con.query('UPDATE Users SET FirstName = \''+FirstName+'\', Lastname = \''+LastName+'\',Email = \''+Email+'\', Bio= \''+Bio+'\' WHERE UserID = '+ request.params.UserID +';', function(err, result, fields) 
   {
@@ -367,7 +344,7 @@ app.get('/Groups/Users/:GroupID', function(request, response, next) {
   });
 });
 
-
+//GET event information from their ID
 app.get('/Events/:EventID', function(request, response, next) {
   con.query('SELECT * FROM Events WHERE EventID = ' + request.params.EventID, function(err, result, fields) 
   {
@@ -376,6 +353,7 @@ app.get('/Events/:EventID', function(request, response, next) {
   });
 });
 
+//updating event information
 app.put('/Events/:EventID', function(request, response) {
 
   var EventName = request.body.EventName;
@@ -406,7 +384,7 @@ var Bio = request.body.Bio;
 });
 
 
-
+//GET group information from GroupID
 app.get('/Groups/:GroupID', function(request, response, next) {
   con.query('SELECT * FROM `Groups` WHERE GroupID = ' + request.params.GroupID, function(err, result, fields) 
   {

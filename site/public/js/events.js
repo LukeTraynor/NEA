@@ -1,3 +1,4 @@
+//function to get whats stored inside the cookie
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -21,6 +22,7 @@ function getCookie(cname) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
+// gets all the events and displays them in a table
 $(document).ready(function(){
     
     $.ajax({
@@ -52,6 +54,7 @@ $(document).ready(function() {
 
  });
 
+ //when log out is clicked the user is sent to the login screen
 $(document).ready(function(){
     $("#log_out").click(function(){
         document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -60,6 +63,7 @@ $(document).ready(function(){
     });
 });
 
+//when the reset button is pressed the page is reloaded
 $(document).ready(function(){
     $("#reset_button").click(function(){
         location.reload();
@@ -67,6 +71,7 @@ $(document).ready(function(){
     });
 });
 
+//gets all the groups according to the search then puts them in a table form
 $(document).ready(function(){
     $("#search_button").click(function(){
         var search = document.getElementById('search_box').value
@@ -84,6 +89,7 @@ $(document).ready(function(){
                 $('td').remove();
     $.each(res, function (i, event) {
         trHTML += '<tr><td>' + event.EventID + '</td><td>' + event.EventName + '</td><td>' + event.DateOfEvent + '</td><td>' + event.Bio + '</td></tr>';
+        //if there is only one result then go to that events page
         if (res.length == 1){
             setCookie("EventID", event.EventID, 2)
             window.location.href = "http://localhost:8000/Event.html"
@@ -100,6 +106,7 @@ $(document).ready(function(){
     });
 });
 
+//pressing the add event button creates a new event then goes to the event page of the newest event made
 $(document).ready(function(){
     $("#add_button").click(function(){
 
