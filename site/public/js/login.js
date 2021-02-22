@@ -3,6 +3,7 @@ $(document).ready(function() {
     $('#incorrect').hide();
  });
 
+ //inputing correct data then pressing the register button inserts a new user into the users table
 $(document).ready(function(){
     $("#register_button").click(function(){
         var Username = document.getElementById('inputEmail').value
@@ -30,6 +31,7 @@ $(document).ready(function(){
     });
 });
 
+//function to get whats stored inside the cookie
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -53,6 +55,7 @@ function getCookie(cname) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
+//prototype data when first using cookies
 $(document).ready(function(){
     $("#create_cookie").click(function(){
         setCookie("UserID", 1, 2);
@@ -60,6 +63,7 @@ $(document).ready(function(){
     });
 });
 
+// checking the inputted username and password that the user entered to the data in the database then letting the user into their profile if the data is correct
 $(document).ready(function(){
     $("#sign_in_button").click(function(){
         var Username = document.getElementById('inputEmail').value
@@ -78,8 +82,8 @@ $(document).ready(function(){
                 console.log("it worked");
                 if (res.loggedin == "false") {
                     
-                    //send message failed login
                     console.log("fail")
+                    //displays the incorrect message to the user if they have entered the wrong username or password
                     $('#registered').hide();
                     $('#incorrect').show();
                   } else {
@@ -102,25 +106,5 @@ $(document).ready(function(){
 
             },
         });
-
-        // $.ajax({
-        //     type: "POST",
-        //     url: "http://localhost:3000/Login",
-        //     data: {
-        //         "Username": Username,
-        //         "User_Password": User_Password
-                
-        //     },
-        //     crossDomain : true,
-        //     success: function (res) {
-                
-        //         window.location.href = "http://localhost:8000/profile.html"
-        //         console.log("it worked");
-         
-        //     },
-        //     error: function (res, err) {
-        //         console.log("it did not work");
-        //     },
-        // });
     });
 });

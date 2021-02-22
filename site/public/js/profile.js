@@ -20,12 +20,12 @@
  });
  
 
+ //updates the database with the user inputted data
  $(document).ready(function(){
 
     var userid = getCookie("UserID");
     console.log(userid)
 
-    //if cookie doesnt exist redirect to login page
 
     $("#save_button").click(function(){
 
@@ -78,13 +78,14 @@
             document.getElementById('last_name').value = res.LastName;
             document.getElementById('email').value = res.Email;
             document.getElementById('bio').value = res.Bio;
+            document.getElementById('username').value = res.Username;
         },
         error: function (res, err) {
             console.log("it did not work");
         },
     });
 
-    //Get Groups
+    //Get Groups that the user is in
     $.ajax({
         type: "GET",
         url: "http://localhost:3000/Users/Groups/"+userid,
@@ -103,6 +104,7 @@
 
 });
 
+//function to get whats stored inside the cookie
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -129,14 +131,15 @@ $(document).ready(function(){
 $(document).ready(function(){
     $("#log_out").click(function(){
         document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        console.log("cookie has been deleted")
         window.location.href = "http://localhost:8000/login.html"
         console.log("log out button works")
+        
     });
 });
 
 //Delete User Ajax call
 $(document).ready(function(){
-    // once login is set up this will be passed dynamically
         var UserID = getCookie("UserID");;
     
         $("#delete_button").click(function(){
@@ -149,7 +152,8 @@ $(document).ready(function(){
                     console.log("it worked");
                     //delete the cookie then go to the login page
                     document.cookie = "UserID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                    //window.location.href = "http://localhost:8000/login.html"
+                    console.log("cookie has been deleted")
+
                 },
                 error: function (res, err) {
                     console.log("it did not work");

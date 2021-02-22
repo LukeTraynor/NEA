@@ -12,6 +12,7 @@
 
  });
 
+ //function to get whats stored inside the cookie
  function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -52,9 +53,10 @@ $.ajax({
     },
 });
 
+//updates the database with the new inputted data
 $(document).ready(function(){
-    // once login is set up this will be passed dynamically
         var GroupID = getCookie("GroupID");;
+        console.log(GroupID)
     
         $("#save_button").click(function(){
     
@@ -70,7 +72,6 @@ $(document).ready(function(){
                 type: "PUT",
                 url: "http://localhost:3000/Groups/"+GroupID,
                 contentType: 'application/json',
-               // data: JSON.stringify(requestbody),
                 data: JSON.stringify({
                     "GroupName": groupname,
                     "Bio": bio
@@ -85,6 +86,7 @@ $(document).ready(function(){
             });
     
         });
+        //displays the users username in the group and their bio
         $.ajax({
             type: "GET",
             url: "http://localhost:3000/Groups/Users/"+GroupID,
@@ -102,6 +104,7 @@ $(document).ready(function(){
         });
 });
 
+//deletes the group then redirects you to the groups page
 $(document).ready(function(){
         var GroupID = getCookie("GroupID");;
     
@@ -113,15 +116,18 @@ $(document).ready(function(){
                 crossDomain : true,
                 success: function (res) {
                     console.log("it worked");
-                    //delete the cookie then go to the groups page
+                    //delete the cookie
                     document.cookie = "GroupID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                    console.log("cookie has been deleted")
                 
                 },
                 error: function (res, err) {
                     console.log("it did not work");
                 },
             });
+            console.log("cookie has been deleted")
             window.location.href = "http://localhost:8000/Groups.html"
+            
     });
 });     
 
