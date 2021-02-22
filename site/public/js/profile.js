@@ -25,7 +25,6 @@
     var userid = getCookie("UserID");
     console.log(userid)
 
-    //if cookie doesnt exist redirect to login page
 
     $("#save_button").click(function(){
 
@@ -78,6 +77,7 @@
             document.getElementById('last_name').value = res.LastName;
             document.getElementById('email').value = res.Email;
             document.getElementById('bio').value = res.Bio;
+            document.getElementById('username').value = res.Username;
         },
         error: function (res, err) {
             console.log("it did not work");
