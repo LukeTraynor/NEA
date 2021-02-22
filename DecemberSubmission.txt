@@ -1,8 +1,0 @@
-Group A - Aggregate SQL function - api/database_api.js line 54
-
-SQL code for database in - sql/create_tables.sql
-
-server side scripting using request and response objects and server-side extensions for complex client-server model - api/database_api.js
-api/database_api.js is also restful api
-
-calling parameterised web service APIs and parsing JSON/XML to serice a complex client-server model - api/database_api.js line 26
